@@ -1,0 +1,22 @@
+---
+title: "Morgan S. Bio381 Assignments"
+author: "Morgan Southgate"
+date: "January 18, 2017"
+output: html_document
+---
+
+# Morgan Southgate
+
+## Computational Biology
+
+### This is how you make headings
+
+Lists:
+
+* [Assignment 1](test.html)   
+* [Assignment 2](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) 
+
+![Adiantum aleuticum](AleutianMaidenhairFern.jpg)
+
+
+
