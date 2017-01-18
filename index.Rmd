@@ -16,7 +16,7 @@ Lists:
 * [Assignment 1](test.html)   
 * [Assignment 2](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) 
 
-![Adiantum aleuticum](AleutianMaidenhairFern.jpg)
+![Adiantum aleuticum, Browns Ledges, Lowell VT](AleutianMaidenhairFern.jpg)
 
 
 
