@@ -13,6 +13,8 @@ output: html_document
 
 Lists:
 
+This is a template for uploading lab assignments
+
 * [Assignment 1](test.html)   
 * [Assignment 2](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) 
 
