@@ -9,7 +9,7 @@ output: html_document
 
 ## Computational Biology
 
-### This is how you make headings
+[Link to Barrington Lab Website](http://www.uvm.edu/~dbarring/DSBpeople.html)
 
 Lists:
 
