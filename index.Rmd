@@ -2,7 +2,10 @@
 title: "Morgan S. Bio381 Assignments"
 author: "Morgan Southgate"
 date: "January 18, 2017"
-output: html_document
+output: 
+ prettydoc::html_pretty:
+    theme: hpstr
+    highlight: github
 ---
 
 # Morgan Southgate
@@ -21,4 +24,4 @@ This is a template for uploading lab assignments
 ![Adiantum aleuticum, Browns Ledges, Lowell VT](AleutianMaidenhairFern.jpg)
 
 
-
+[Homework 2](Homework2.html)

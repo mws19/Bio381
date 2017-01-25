@@ -1,0 +1,20 @@
+---
+title: "1/19 Class"
+author: "Morgan Southgate"
+date: "January 19, 2017"
+output: html_document
+---
+
+In GitHub desktop, changes shown in the history tab. 
+
+The Git tab in the upper right window of Rstudio shows changes. 
+
+Bio381 page is the portfolio. 
+
+Take little steps and save work. 
+
+Workflow (getting information from RStudio to published webpages):
+1. Changing R markdown files
+2. Knitting to html
+3. Commit changes in GitHub
+4. Sync to GitHub website

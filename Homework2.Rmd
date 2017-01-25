@@ -1,0 +1,17 @@
+---
+title: "Homework2"
+author: "Morgan Southgate"
+date: "January 25, 2017"
+output: html_document
+---
+
+These are the first tools which I used to understand and structure my hypothesis relating to ecological niche differentiation within the *Adiantum pedatum* complex. 
+![Path Analysis](PathAnalysis.jpg)
+
+![Logic Tree](LogicTree.jpg)
+
+![Look Up Table](LookUpTable.jpg)
+
+![Mock Data](MockData.jpg) 
+
+
