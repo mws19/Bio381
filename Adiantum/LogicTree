@@ -1,0 +1,8 @@
+```mermaid
+graph TB
+A[Niche differentiation b/w serpentine maidenhairs?]
+A -->|Yes| B[Niche of A.v. intermediate b/w progenitors?]
+A -->|No| C[Ecology not fit by comp. exclusion or heredity]
+B -->|Yes| D[Niche differentiation due to heredity]
+B -->|No| E[Niche differentiation due to character displacement]
+```

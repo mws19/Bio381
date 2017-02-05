@@ -3,10 +3,10 @@ title: "First Markdown Trial"
 author: "Morgan Southgate"
 date: "January 24, 2017"
 output:
-  pdf_document: default
   html_document:
     highlight: tango
     theme: cerulean
+  pdf_document: default
 ---
 
 This text has *italics*.   
@@ -69,3 +69,41 @@ Put an equation $a = b + c$ in my sentence
 ###Set equation on its own line with this
 
 $$a = b + c$$
+
+###Subscripts in LaTex
+
+$$H_0 = Z_{a + b}$$
+
+In Markdown, we say H~0~
+
+Superscripts
+
+$$S = cA^z$$
+
+Combining elements:
+
+$$S = cA^z_1 = z_{2+x_0}$$
+
+Special symbols and fraction
+
+$$\alpha = \frac{\beta}{\gamma + \delta_x}$$
+
+Using the backslash
+
+$$\backslash \alpha \le b \backslash$$
+
+
+Summation sign
+
+$$z = \sum_{i=1}^X{K}$$
+
+Rendering plaintext in LaTex
+
+$$P(\mbox{Occurrence Of Species A}) = Z$$
+
+
+```{r, eval=FALSE}
+plot(runif(20))   
+print(seq(1,5))   
+```
+
