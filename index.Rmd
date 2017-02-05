@@ -14,12 +14,12 @@ output:
 
 [Link to Barrington Lab Website](http://www.uvm.edu/~dbarring/DSBpeople.html)
 
-Lists:
 
-This is a template for uploading lab assignments
+Lab assignments: 
 
 * [Assignment 1](test.html)   
 * [Homework 2](Homework2.html)
+* [Homework 3- Beech Bark Disease Complex Powerpoint](BBD_Complex.html)
 
 ![Adiantum aleuticum, Browns Ledges, Lowell VT](AleutianMaidenhairFern.jpg)
 
