@@ -7,3 +7,14 @@ A[] -->B(Round edge)
     C -->|Two| E[Result two]
 ​```
 ```
+```mermaid
+graph TD
+id1[Niche differentiation b/w serpentine maidenhairs?] -->|No|id2
+id2[Ecology not defined by character displacement or hybridity]
+id1 -->|Yes|id3
+id3[Ecological niche of hybrid intermediate b/w progenitors?]-->|No|id4
+id4[Niche differentiation primarily due to character displacement]
+id3 -->|Yes|id5
+id5[Niche differentiation due to character displacement and hybridity]
+```
+
