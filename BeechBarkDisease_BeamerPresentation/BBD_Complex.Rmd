@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ##Beech Bark Disease
 
  \begin{picture}(320,250)
- \put(80,70){\includegraphics[height=6cm]{BBD_beechbark.jpg}}
+ \put(80,70){\includegraphics[height=6cm]{Documents\Bio381\BeechBarkDisease_BeamerPresentation\BBD_beechbark.jpg}}
  \put(00,40){\begin{minipage}[t]{1\linewidth}{Trunk of beech exhibiting symptoms of disease complex}
  \end{minipage}}
  \end{picture}   
