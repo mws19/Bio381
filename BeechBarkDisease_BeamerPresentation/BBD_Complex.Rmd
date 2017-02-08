@@ -3,12 +3,12 @@ title: "Beech Bark Disease Complex"
 author: "Morgan Southgate"
 date: "February 1, 2017"
 output:
-  slidy_presentation:
+  beamer_presentation:
+    colortheme: beaver
     incremental: yes
   ioslides_presentation:
     incremental: yes
-  beamer_presentation:
-    colortheme: beaver
+  slidy_presentation:
     incremental: yes
 ---
 ```{r setup, include=FALSE}

@@ -19,8 +19,8 @@ Lab assignments:
 
 * [Homework 1](test.html)   
 * [Homework 2](Homework2.html)
-* [Homework 3 Part 1- Beech Bark Disease Complex Powerpoint](Libraries\Documents\Bio381\BeechBarkDisease_BeamerPresentation\BBD_Complex.html) 
-* [Homework 3 Part 2 - Adiantum Logic Tree](Bio381\Adiantum\Adiantum_LogicTree.html) 
+* [Homework 3 Part 1- Beech Bark Disease Complex Powerpoint](BBD_Complex.pdf) 
+* [Homework 3 Part 2 - Adiantum Logic Tree](Adiantum_LogicTree.html) 
 
 ![Adiantum aleuticum, Browns Ledges, Lowell VT](AleutianMaidenhairFern.jpg)
 
