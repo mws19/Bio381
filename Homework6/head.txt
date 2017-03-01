@@ -1,0 +1,25 @@
+### `head`
+#### Morgan W. Southgate
+
+The head function returns the first part of a vector, matrix, table, data frame, or function.
+
+head(x, n= ...)
+
+Input:    
+    - x: a vector, matrix, table, data frame, or function.
+    - n: a single integer which (if positive) specifies the size of the resulting object - the number of     elements for a vector, the number of rows for a matrix or data frame, or the number of lines for a      function. If negative, n specifies all but the n last elements of x. 
+  
+Output:    
+    - The first section of x, the extent of which is specified by n.
+
+```{r}
+# Create sequence data for infilling matrix
+x <- seq(from=5, to=100, by=5)
+
+# Create a matrix from sequence x
+xmatrix <- matrix(data=x, nrow=10, ncol=2, byrow=TRUE)
+
+# View the first 3 rows of matrix x
+head(xmatrix, n=3)
+```
+

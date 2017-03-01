@@ -1,0 +1,21 @@
+### `c`
+#### Morgan W. Southgate
+
+The c function concatenates values into a vector or a list. All arguments are coerced to a common type in the order logical -> integer -> double -> character.Logical arguments are coerced to integer arguments using the system TRUE = 1, FALSE = 0.  
+
+c(....)
+
+Inputs:    
+    - ....: the objects to be concatenated
+
+Output:     
+    - an atomic vector or list of concatenated objects
+
+```{r}
+# Concatenate the numeric variables 1 & 2 and the logical variable TRUE
+c1 <- c(1,2,TRUE)
+
+# Check the structure of c1 - as two different types of variables were concatened, the logical variable should have been coerced into a numeric variable of the value 1. 
+str(c1)
+```
+

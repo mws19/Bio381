@@ -1,0 +1,19 @@
+### `atan`
+#### Morgan W. Southgate
+
+The atan function is the inverse of the tan function, and so returns the y value for which x= tan(y). 
+
+atan(x)
+
+Input:     
+    - x: numeric or complex vector signifying angle theta.
+    
+Output:     
+    - the y value for which x = tan(y), in terms of radians. 
+
+```{r}
+# Calculates the value of y for which 5 = tan(y)
+atan(5)
+
+```
+

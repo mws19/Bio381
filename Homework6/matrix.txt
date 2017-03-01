@@ -1,0 +1,29 @@
+### `matrix`
+#### Morgan W. Southgate
+
+The matrix function creates a matrix from the given set of values. 
+
+matrix (data = NA, nrow=1, ncol=1, byrow=FALSE, dimnames = NULL)
+
+Input:     
+    - data: the data vector to be converted to matrix form    
+    - nrow: the desired # of rows    
+    - ncol: the desired # of columns    
+    - byrow: a logical input. FALSE (default) fills matrix by columns, TRUE fills by rows.      
+    - dimnames: NULL or a list of of length 2 giving the row and column names, respectively.       An empty list is treated as NULL and a list of length one as the row names only. NULL       assigns row and column numbers automatically using matrix format of (row#,column#).     
+
+Output:     
+    - A matrix of the given data. 
+
+```{r}
+# Make an atomic vector of 16 values using a sequence function
+a <- 1:16
+
+# Assign dimension names by creating a list - first four lowercase letters of alphabet will become row names, first four uppercase letters will become column names
+dimnames1 <- list(letters[1:4],LETTERS[1:4])
+
+# Assemble the atomic vector data into a matrix with 4 rows, 4 columns, and fill matrix by row
+m1 <- matrix(data = a, nrow=4, ncol=4, byrow=TRUE, dimnames = dimnames1)
+print(m1)
+```
+

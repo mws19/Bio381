@@ -1,0 +1,26 @@
+### `%%`
+#### Morgan W. Southgate
+
+The %% function is an arithmetic operator function which gives the modulus of two arguments. This modulus operator divides the x argument by the y argument, rounds down to the nearest integer, and then finds the remainder between the (integer value * y) and the value of x. For vectors x & y where x is an integer multiple of y, the result of x mod y is 0. 
+
+x%%y
+
+Input:    
+    - x,y: numeric or complex vectors or objects which can be coerced to this type
+    
+Output:    
+    - the difference between x and the rounded integer quotient of x/y
+
+```{r}
+# Assign integer values to the vectors x & y
+x <- 15
+y <- 4
+
+# Find the difference between the value of x and the value of the rounded integer quotient x/y. 15/4 = 3.75, rounded down to 3. Then 3*4 = 12, and 15-12 =3. 
+x%%y
+
+# When y is an integer multiple of x, x%%y = 0
+12%%4
+
+```
+

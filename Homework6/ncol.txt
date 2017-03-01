@@ -1,0 +1,25 @@
+### `ncol`
+#### Morgan W. Southgate
+
+The ncol function returns the number of columns present in an atomic vector, matrix, data frame, or data array. Atomic vectors are treated as one-column matrices. 
+
+ncol(x)
+
+Input:     
+    - x: a vector, matrix, array, or data frame
+
+Output:     
+    - the number of columns in x
+
+
+```{r}
+# Create sequence data for infilling matrix
+b <- 1:12
+
+# Create matrix with default number of columns
+m2 <- matrix(data=b)
+
+# Tell number of columns in m
+ncol(m2)
+```
+

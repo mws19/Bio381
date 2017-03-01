@@ -1,0 +1,21 @@
+### `sqrt`
+#### Morgan W. Southgate
+
+The sqrt function computes the square root of a value x or vector of values x. 
+
+sqrt(x)
+
+Input:     
+    - x: a numeric or complex vector or array
+    
+Output:     
+    - the square root of x or the square root of each individual term in x  
+
+```{r}
+# Create a numeric vector v1
+v1 <- c(16,4)
+
+# Calculate the square roots of each integer value in v1
+sqrt(v1)
+```
+

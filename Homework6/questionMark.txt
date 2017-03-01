@@ -1,0 +1,16 @@
+### `?`    
+#### Morgan W. Southgate    
+
+The documentation shortcut ? provides access to documentation and help on an unknown function. Available for use only in the console. 
+
+?function.name
+
+Input:   
+    - name of the function
+    
+Output:   
+    - documentation and user help displayed in the help console (lower R)
+
+
+	
+	

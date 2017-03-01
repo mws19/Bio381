@@ -1,0 +1,320 @@
+---
+title: "Homework 6"
+author: "Morgan Southgate"
+date: "February 22, 2017"
+output: html_document
+---
+
+### `matrix`
+#### Morgan W. Southgate
+
+The matrix function creates a matrix from the given set of values. 
+
+matrix (data = NA, nrow=1, ncol=1, byrow=FALSE, dimnames = NULL)
+
+Input:     
+    - data: the data vector to be converted to matrix form    
+    - nrow: the desired # of rows    
+    - ncol: the desired # of columns    
+    - byrow: a logical input. FALSE (default) fills matrix by columns, TRUE fills by rows.      
+    - dimnames: NULL or a list of of length 2 giving the row and column names, respectively.       An empty list is treated as NULL and a list of length one as the row names only. NULL       assigns row and column numbers automatically using matrix format of (row#,column#).     
+
+Output:     
+    - A matrix of the given data. 
+
+```{r}
+# Make an atomic vector of 16 values using a sequence function
+a <- 1:16
+
+# Assign dimension names by creating a list - first four lowercase letters of alphabet will become row names, first four uppercase letters will become column names
+dimnames1 <- list(letters[1:4],LETTERS[1:4])
+
+# Assemble the atomic vector data into a matrix with 4 rows, 4 columns, and fill matrix by row
+m1 <- matrix(data = a, nrow=4, ncol=4, byrow=TRUE, dimnames = dimnames1)
+print(m1)
+```
+
+### `ncol`
+#### Morgan W. Southgate
+
+The ncol function returns the number of columns present in an atomic vector, matrix, data frame, or data array. Atomic vectors are treated as one-column matrices. 
+
+ncol(x)
+
+Input:     
+    - x: a vector, matrix, array, or data frame
+
+Output:     
+    - the number of columns in x
+
+
+```{r}
+# Create sequence data for infilling matrix
+b <- 1:12
+
+# Create matrix with default number of columns
+m2 <- matrix(data=b)
+
+# Tell number of columns in m
+ncol(m2)
+```
+
+
+### `atan`
+#### Morgan W. Southgate
+
+The atan function is the inverse of the tan function, and so returns the y value for which x= tan(y). 
+
+atan(x)
+
+Input:     
+    - x: numeric or complex vector signifying angle theta.
+    
+Output:     
+    - the y value for which x = tan(y), in terms of radians. 
+
+```{r}
+# Calculates the value of y for which 5 = tan(y)
+atan(5)
+
+```
+
+
+### `c`
+#### Morgan W. Southgate
+
+The c function concatenates values into a vector or a list. All arguments are coerced to a common type in the order logical -> integer -> double -> character.Logical arguments are coerced to integer arguments using the system TRUE = 1, FALSE = 0.  
+
+c(....)
+
+Inputs:    
+    - ....: the objects to be concatenated
+
+Output:     
+    - an atomic vector or list of concatenated objects
+
+```{r}
+# Concatenate the numeric variables 1 & 2 and the logical variable TRUE
+c1 <- c(1,2,TRUE)
+
+# Check the structure of c1 - as two different types of variables were concatened, the logical variable should have been coerced into a numeric variable of the value 1. 
+str(c1)
+```
+
+
+### `sqrt`
+#### Morgan W. Southgate
+
+The sqrt function computes the square root of a value x or vector of values x. 
+
+sqrt(x)
+
+Input:     
+    - x: a numeric or complex vector or array
+    
+Output:     
+    - the square root of x or the square root of each individual term in x  
+
+```{r}
+# Create a numeric vector v1
+v1 <- c(16,4)
+
+# Calculate the square roots of each integer value in v1
+sqrt(v1)
+```
+
+
+### `*`    
+#### Morgan W. Southgate
+
+The function * is an arithmetic operator function which returns the product of two numeric or complex variables or vectors. If multiplying two vectors with multiple values in each together, the multiplication function finds the consecutive products of the values in the vectors from left to right. 
+
+x*y
+
+Input:    
+    - x,y : numeric or complex vectors or objects which can be coerced to numeric or complex       vectors
+    
+Output:     
+    - the product of x and y. Logical variables are coereced to integer or numeric vectors,       where FALSE = 0 and TRUE=1. 
+
+```{r}
+# Create two vectors x1 & y1
+x1 <- c(1,2,3)
+y1 <- c(4,5,6)
+
+# Find the products of the values contained in the vectors x1 and y1
+x1*y1
+
+```
+
+
+
+### `cummax`    
+#### Morgan W. Southgate
+
+The function cummax returns a vector whose elements are the cumulative maxima of the elements in the argument as read from L to R. 
+
+cummax(x)
+
+Input:     
+    - x: a numeric or complex object
+    
+Output:     
+    - an atomic vector whose elements are the cumulative maxima of the elements in the argument as processed from L to R. Processing from L to R, the function consecutively finds the largest number. If the number in position x+1 is larger than the number in position x, its numeric value becomes the next element in the vector. If the number in position x+1 is smaller than the number in position x, the numeric value of x becomes the next element in the vector. 
+    
+
+```{r}
+# Create a list d by concatenating sequences 1:3, 0:2, and 2:4
+d <- c(1:3, 0:2, 2:4)
+
+# View list d
+print(d)
+
+# Find the cumulative maxima of the list
+cummax(d)
+
+```
+
+
+### `is.character`    
+#### Morgan W. Southgate
+
+The is.character function tests if an object is of character type. 
+
+is.character(x)
+
+Input:    
+    - x: the object to be tested
+
+Output:     
+    - Test of character type for x in logical format. TRUE result means that the object of character type, FALSE result means that object not of character type.  
+
+```{r}
+# Create an atomic vector e consisting of the first four lowercase letters in the alphabet
+e <- letters[1:4]
+
+# Test if the vector e is of character type
+is.character(e)
+
+# Create an atomic vector f consisting of a number sequence 1-10
+f <- 1:10
+
+# Test if the vector f is of character type
+is.character(f)
+```
+
+
+### `?`    
+#### Morgan W. Southgate    
+
+The documentation shortcut ? provides access to documentation and help on an unknown function. Available for use only in the console. 
+
+?function.name
+
+Input:   
+    - name of the function
+    
+Output:   
+    - documentation and user help displayed in the help console (lower R)
+
+
+
+### `setdiff`
+#### Morgan W. Southgate
+
+The setdiff function is a set function which compares two sets of values and returns the values which are in the first set but NOT in the second set. Therefore, setdiff(x, y) returns a different output than setdiff(y, x). 
+
+setdiff(x, y)
+
+Input:    
+    - x, y: vectors (of the same mode) containing a sequence of items with no duplicate           values.     
+Output:     
+    - The values in the first set of values which are NOT in the second set of values.    
+    
+```{r}
+# Create two sets of values set1 and set2 with overlapping but distinct values
+set1 <- c( "a","b","d","e")
+set2 <- c( "a","c","d","f")
+
+# Use the setdiff function to return the values which are unique to set1
+setdiff(set1,set2)
+
+# See that the output is changed by reversing the order of sets 1 and 2
+setdiff(set2,set1)
+
+```
+
+
+### `%%`
+#### Morgan W. Southgate
+
+The %% function is an arithmetic operator function which gives the modulus of two arguments. This modulus operator divides the x argument by the y argument, rounds down to the nearest integer, and then finds the remainder between the (integer value * y) and the value of x. For vectors x & y where x is an integer multiple of y, the result of x mod y is 0. 
+
+x%%y
+
+Input:    
+    - x,y: numeric or complex vectors or objects which can be coerced to this type
+    
+Output:    
+    - the difference between x and the rounded integer quotient of x/y
+
+```{r}
+# Assign integer values to the vectors x & y
+x <- 15
+y <- 4
+
+# Find the difference between the value of x and the value of the rounded integer quotient x/y. 15/4 = 3.75, rounded down to 3. Then 3*4 = 12, and 15-12 =3. 
+x%%y
+
+# When y is an integer multiple of x, x%%y = 0
+12%%4
+
+```
+
+
+### `head`
+#### Morgan W. Southgate
+
+The head function returns the first part of a vector, matrix, table, data frame, or function.
+
+head(x, n= ...)
+
+Input:    
+    - x: a vector, matrix, table, data frame, or function.
+    - n: a single integer which (if positive) specifies the size of the resulting object - the number of     elements for a vector, the number of rows for a matrix or data frame, or the number of lines for a      function. If negative, n specifies all but the n last elements of x. 
+  
+Output:    
+    - The first section of x, the extent of which is specified by n.
+
+```{r}
+# Create sequence data for infilling matrix
+x <- seq(from=5, to=100, by=5)
+
+# Create a matrix from sequence x
+xmatrix <- matrix(data=x, nrow=10, ncol=2, byrow=TRUE)
+
+# View the first 3 rows of matrix x
+head(xmatrix, n=3)
+```
+
+
+### `exp`
+#### Morgan W. Southgate
+
+The exp function computes the exponential function for base e. 
+
+exp(x)
+
+Input:     
+    - x: a numeric or complex vector
+    
+Output:    
+    - The result of e^x 
+
+```{r}
+# Find the result of raising e to the third power (e^3).
+exp(3)
+
+```
+
+

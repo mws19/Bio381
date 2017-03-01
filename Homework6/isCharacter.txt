@@ -1,0 +1,27 @@
+### `is.character`    
+#### Morgan W. Southgate
+
+The is.character function tests if an object is of character type. 
+
+is.character(x)
+
+Input:    
+    - x: the object to be tested
+
+Output:     
+    - Test of character type for x in logical format. TRUE result means that the object of character type, FALSE result means that object not of character type.  
+
+```{r}
+# Create an atomic vector e consisting of the first four lowercase letters in the alphabet
+e <- letters[1:4]
+
+# Test if the vector e is of character type
+is.character(e)
+
+# Create an atomic vector f consisting of a number sequence 1-10
+f <- 1:10
+
+# Test if the vector f is of character type
+is.character(f)
+```
+

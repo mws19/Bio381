@@ -1,0 +1,23 @@
+### `*`    
+#### Morgan W. Southgate
+
+The function * is an arithmetic operator function which returns the product of two numeric or complex variables or vectors. If multiplying two vectors with multiple values in each together, the multiplication function finds the consecutive products of the values in the vectors from left to right. 
+
+x*y
+
+Input:    
+    - x,y : numeric or complex vectors or objects which can be coerced to numeric or complex       vectors
+    
+Output:     
+    - the product of x and y. Logical variables are coereced to integer or numeric vectors,       where FALSE = 0 and TRUE=1. 
+
+```{r}
+# Create two vectors x1 & y1
+x1 <- c(1,2,3)
+y1 <- c(4,5,6)
+
+# Find the products of the values contained in the vectors x1 and y1
+x1*y1
+
+```
+

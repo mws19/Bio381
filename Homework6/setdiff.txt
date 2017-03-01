@@ -1,0 +1,25 @@
+### `setdiff`
+#### Morgan W. Southgate
+
+The setdiff function is a set function which compares two sets of values and returns the values which are in the first set but NOT in the second set. Therefore, setdiff(x, y) returns a different output than setdiff(y, x). 
+
+setdiff(x, y)
+
+Input:    
+    - x, y: vectors (of the same mode) containing a sequence of items with no duplicate           values.     
+Output:     
+    - The values in the first set of values which are NOT in the second set of values.    
+    
+```{r}
+# Create two sets of values set1 and set2 with overlapping but distinct values
+set1 <- c( "a","b","d","e")
+set2 <- c( "a","c","d","f")
+
+# Use the setdiff function to return the values which are unique to set1
+setdiff(set1,set2)
+
+# See that the output is changed by reversing the order of sets 1 and 2
+setdiff(set2,set1)
+
+```
+

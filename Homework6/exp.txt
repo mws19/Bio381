@@ -1,0 +1,19 @@
+### `exp`
+#### Morgan W. Southgate
+
+The exp function computes the exponential function for base e. 
+
+exp(x)
+
+Input:     
+    - x: a numeric or complex vector
+    
+Output:    
+    - The result of e^x 
+
+```{r}
+# Find the result of raising e to the third power (e^3).
+exp(3)
+
+```
+

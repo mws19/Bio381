@@ -1,0 +1,39 @@
+x, MyWord OtherJunk. ,
+13, MyWord, OtherStuff,,
+x13,  MyThirdWord,     MoreTrash,!##
+xxx,LastWord     x.
+
+
+Lasius neoniger
+Lasius umbratus
+Myrmica punctiventris
+Myrmica sp
+
+Try to ascertain a kind of karma. 
+
+`````
+WordA,OneWord,WordZ
+WordA,Two Words,WordZ
+WordA,Three More Words,WordZ
+WordA,Four Or More Words,WordZ
+
+OneWord
+Two Words
+Three More Words
+Four Or More Words
+
+Find: ^\w+,((\w+ )*\w+),\w+$
+Replace: \1 # \2
+
+Find: ^\w+,([^,]+),\w+$
+Replace: \1
+`````
+#Finding errors
+
+LC1 11101 gbb
+BadLine: LC2 200o1 xxx
+BadLine: LC3 l0001 xxx
+LC4 30401 xxx
+
+Find: ^(\w+ \d*\D+\S* \w+)$
+Replace: BadLine: \1

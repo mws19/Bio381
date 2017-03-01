@@ -1,0 +1,20 @@
+---
+title: "Homework4_AdiantumSoilData"
+author: "Morgan Southgate"
+date: "February 8, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+AdiantumRawSoilData <- read.table("AdiantumSoilData.csv", header=T, sep = ',', stringsAsFactors = F)
+str(AdiantumRawSoilData)
+table(AdiantumRawSoilData$pH)
+summary(AdiantumRawSoilData$pH)
+head(AdiantumRawSoilData)
+tail(AdiantumRawSoilData)
+```
+
