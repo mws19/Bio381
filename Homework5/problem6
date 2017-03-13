@@ -1,0 +1,8 @@
+Create a vector z of 1000 random uniform numbers.
+create a vector that contains 3 numbers: the proportion of the numbers in z that are less than 0.10, greater than 0.90, and between 0.45 and 0.55.
+Making successive copies of z, transform your vector of uniform numbers in the following ways:
+log (base 10) of z
+z2
+ez
+square root of z
+for each case calculate your vector of 3 numbers to get the new proportions.
