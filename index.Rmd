@@ -23,7 +23,7 @@ Lab assignments:
 * [Homework 3 Part 2 - Adiantum Logic Tree](Adiantum_LogicTree.html) 
 * [Homework 4 Part 1- Adiantum Soil Data](AdiantumSoilAnalysis.html)
 * [Homework 4 Part 2- Regular Expressions Practice](Homework4_Part2_RegExPractice.html)
-* [Homework 5]
+* [Homework 5 - Data Structures & Coding](Homework_5.html)
 * [Homework 6](Homework6_Southgate.html)
 
 ![Adiantum aleuticum, Browns Ledges, Lowell VT](AleutianMaidenhairFern.jpg)

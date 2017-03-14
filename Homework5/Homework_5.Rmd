@@ -1,89 +1,151 @@
-# Morgan Southgate
-# Homework 5
-# February 15, 2017
+---
+title: "Homework 5"
+author: "Morgan Southgate"
+date: "February 15, 2017"
+output: html_document
+---
 
-#1
+##Problem #1
+
+```{r}
 x <- 1.1
 a <- 2.2
 b <- 3.3
+```
 
-##a
+### 1a
+
+```{r}
 z <- (x^(a^b))
 print(z)
+```
 
-##b
+### 1b
+```{r}
 z <- ((x^a)^b)
 print(z)
+```
 
-##c
+### 1c
+```{r}
 z <-((3*x^3)+(2*x^2)+1)
 print(z)
+```
 
-##d
+### 1d
+```{r}
 (z %% 1)
 floor((z %% 1)*10)
+```
 
-#2
-##a
+## Problem #2
+
+###2a
+```{r}
 x <- seq(from = 1, to=8)
 y <- seq(from = 7, to = 1)
 c(x,y)
+```
 
-##b
+###2b
+```{r}
+
 rep(1:5, c(1,2,3,4,5))
 
-##c
+```
+
+###2c
+```{r}
+
 rep(5:1, c(1,2,3,4,5))
 
-#3
+```
+
+## Problem 3
+
+```{r}
 v <- runif(2)
 r <- sqrt(v[1]^2 + v[2]^2)
-theta <- atan(v[2]/v[1])
 print(r)
+theta <- atan(v[2]/v[1])
 print(theta)
+```
 
-#4
+## Problem 4
+
+```{r}
 queue <- c("sheep", "fox", "owl", "ant")
 
-##a
+```
+
+###4a
+```{r}
 queue <- c(queue, "serpent")
 
-##b
+```
+
+###4b
+```{r}
 queue <- queue[-1]
 
-##c
+```
+
+###4c
+```{r}
 queue <- c("donkey",queue)
+```
 
-##d
+###4d
+```{r}
 queue <- queue[-5]
+```
 
-##e
+###4e
+```{r}
 queue <- queue[-3]
+```
 
-##f
+###4f
+```{r}
 queue <- append(queue, "aphid", after = 2)
+```
 
-##g
+##4g
+```{r}
 which(queue == "aphid")
 
-#5
+```
+
+##Problem 5
+
+```{r}
 v <- rep(1:100, by=1)
 v[v%%2 != 0 & v%%3 !=0 & v%%7 !=0]
 
-#6
+```
+
+## Problem 6
+```{r}
 z <- runif(1000)
 
-##a
+```
+
+##6a
+```{r}
 y<-c(mean(z<0.1),mean(z>0.9),mean(z>.45 & z<.55))
 print(y)
+```
 
-##b
+##6b
+```{r}
 x1 <- log10(z)
 x2 <- z^2
 x3 <- exp(z)
 x4 <- sqrt(z)
+```
 
-##c
+##6c
+```{r}
 w1 <- c(mean(x1<0.1),mean(x1>0.9),mean(x1>.45 & x<.55))
 print(w1)
 
@@ -95,3 +157,8 @@ print(w3)
 
 w4 <- c(mean(x3<0.1),mean(x3>0.9),mean(x3>.45 & x3< .55))
 print(w4)
+
+```
+
+
+
