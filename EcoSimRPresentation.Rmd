@@ -1,0 +1,116 @@
+---
+title: "EcoSimR Presentation"
+author: "Morgan Southgate"
+date: "April 18, 2017"
+output: 
+  html_document: 
+    theme: cerulean
+---
+
+## 1. Create presence-absence matrix from species list data
+```{r, echo=TRUE, message=FALSE, warning=FALSE, set.eval=FALSE}
+# read in associated species data 
+sppDat <- read.table("AssociatedSpeciesData_Serp.csv",header=TRUE,sep=",",stringsAsFactors = FALSE)
+head(sppDat)
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+# reshape data using dcast function in reshape2 package
+library(reshape2)
+PA <- dcast(sppDat,formula=SpeciesName~SitePatch)
+head(PA)
+dim(PA)
+```
+
+
+## 2. Conduct Species Co-occurrence Analysis using EcoSimR
+### SIM9 null model algorithm- row and column sums fixed
+#### C score index
+```{r, echo=TRUE, message=FALSE}
+library(EcoSimR)
+library(MASS)
+# Run null model with SIM9 algorithm & CHECKER index
+adMod1 <- cooc_null_model(PA,algo= "sim9",metric="checker",nReps=1000,suppressProg=T)
+
+# Summary and plots
+summary(adMod1)
+plot(adMod1,type="burn_in")
+plot(adMod1,type="hist")
+plot(adMod1,type="cooc")
+```
+
+#### CHECKER index
+```{r, echo=TRUE}
+set.seed(56)
+## Run null model with SIM9 algorithm and C score index
+adMod2 <- cooc_null_model(PA,algo= "sim9",metric="c_score",nReps=1000,suppressProg=T,saveSeed=T)
+reproduce_model(adMod2)
+
+
+# Summary and plots
+summary(adMod2)
+plot(adMod2,type="burn_in")
+plot(adMod2,type="hist")
+plot(adMod2,type="cooc")
+
+```
+
+#### COMBO index
+```{r, echo=TRUE}
+# Run null model with SIM9 algorithm and COMBO index
+adMod3 <- cooc_null_model(PA,algo= "sim9",metric="species_combo",nReps=1000,suppressProg=T)
+
+# Summary and plots
+summary(adMod3)
+plot(adMod3,type="burn_in")
+plot(adMod3,type="hist")
+plot(adMod3,type="cooc")
+```
+
+### SIM2 null model algorithm- row sums fixed, columns equiprobable
+#### C score Index
+```{r, echo=TRUE}
+# Run null model with SIM2 algorithm and CHECKER index
+adMod4 <- cooc_null_model(PA,algo= "sim2",metric="checker",nReps=1000,saveSeed=TRUE,suppressProg=T)
+
+# Summary and plots
+summary(adMod4)
+plot(adMod4,type="hist")
+plot(adMod4,type="cooc")
+
+```
+
+#### CHECKER Index
+```{r, echo=TRUE}
+# Run null model with SIM2 algorithm and C score index
+adMod5 <- cooc_null_model(PA,algo= "sim2",metric="c_score",nReps=1000,saveSeed=TRUE,suppressProg=T)
+
+# Summary and plots
+summary(adMod5)
+plot(adMod5,type="hist")
+plot(adMod5,type="cooc")
+
+```
+
+#### V ratio Index
+```{r, echo=TRUE}
+# Run null model with SIM2 algorithm and V ratio index
+adMod6 <- cooc_null_model(PA,algo= "sim2",metric="v_ratio",nReps=1000,saveSeed=FALSE,suppressProg=T)
+
+# Summary and plots
+summary(adMod6)
+plot(adMod6,type="hist")
+plot(adMod6,type="cooc")
+```
+
+### COMBO Index
+```{r, echo=TRUE}
+# Run null model with SIM2 algorithm and COMBO index
+adMod7 <- cooc_null_model(PA,algo= "sim2",metric="species_combo",nReps=1000,saveSeed=FALSE,suppressProg=T)
+
+# Summary and plots
+summary(adMod7)
+plot(adMod7,type="hist")
+plot(adMod7,type="cooc")
+```
+

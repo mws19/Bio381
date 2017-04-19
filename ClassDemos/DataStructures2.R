@@ -97,8 +97,10 @@ myList <- list(1:10,matrix(1:8,nrow=4,byrow=TRUE),letters[1:3],pi)
 print(myList)
 str(myList)
 myList[4]
+
 # myList[4] - 3
 myList[[4]] - 3
+
 #suppose a list with 10 elements in it
 #[[5]] equals contents of car #5
 # [c(4,5,6)] equals a littel train of cars 4,5, and 6

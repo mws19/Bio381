@@ -9,7 +9,7 @@
 # output: data frame
 #-----------------------------------------------------------------------------------------------------
 GetData <- function(fileName=NULL){
-  if(is.null(filename)){dataFrame <- data.frame(ID=1:10,
+  if(is.null(fileName)){dataFrame <- data.frame(ID=1:10,
                                                varA <- runif(10),
                                                varB <- runif(10))
 } else {
@@ -72,9 +72,22 @@ message("Message: Regression graph created")
 
 GraphResults()
 
+#--------------------------------------------------------------------------------------------------
+# Global Variables
+antFile <- "antcountydata.csv" # New ENgland Ant Data
+xCol <- 7 # column 7= latitude centroid of county
+yCol <- 5 # column 5= number of ant species
+#--------------------------------------------------------------------------------------------------
 
 # Program Body
-GetData()
-FitRegressionModel()
-SummarizeOutput()
-GraphResults()
+temp1 <- GetData(fileName=antFile)
+
+x <- temp1[,xCol]
+y <- temp1[,yCol]
+
+temp2 <- FitRegressionModel(xVar=x,yVar=y)
+temp3 <- SummarizeOutput(temp2)
+GraphResults(xVar=x,yVar=y)
+
+print(temp3)
+print(temp2)

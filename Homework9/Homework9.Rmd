@@ -1,0 +1,77 @@
+---
+title: "Homework9"
+author: "Morgan Southgate"
+date: "March 29, 2017"
+output: html_document
+---
+
+
+# Linear Regression
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# adiantum data
+adiantData <- read.table("QuantitativeDataAdiantum_mat.csv",sep=",",header=T,stringsAsFactors = F)
+head(adiantData)
+
+# Ca base sat and Mg base sat show significant negative correlation
+cabasat <- adiantData[,30]
+print(cabasat)
+
+mgbasat <- adiantData[,31]
+print(mgbasat)
+
+df <- data.frame(cabasat,mgbasat)
+print(df)
+
+linReg(xVar=cabasat,yVar=mgbasat,data=df)
+
+```
+
+# Logistic Regression
+
+```{r}
+# Logistic regression with adiantum data
+adiDat <- read.table("QuantitativeDataAdiantum_serps.csv", header=T, stringsAsFactors = F,sep=",")
+print(adiDat)
+
+# transform NA values to 0
+adDat <- adiDat
+adDat[is.na(adDat)]<- 0
+head(adDat)
+dim(adDat)
+
+# set x & y variables
+yVar <- adDat[,2]
+xVar <- adDat[,31]
+df <- data.frame(yVar,xVar)
+
+# run with adiantum data
+logReg(xVar=xVar,yVar=yVar)
+
+glm(yVar ~ xVar,family=gaussian)
+
+
+```
+
+
+# ANOVA
+```{r}
+adiDat <- read.table("QuantitativeDataAdiantum_mat.csv", header=T, stringsAsFactors = F,sep=",")
+print(adiDat)
+
+# transform NA values to 0
+adDat <- adiDat
+adDat[is.na(adDat)]<- 0
+head(adDat)
+dim(adDat)
+
+# assign x and y variables
+xVar1 <- adDat[,2]
+yVar1 <- adDat[,4]
+
+analVar(xVar1=xVar1,yVar1=yVar1)
+
+```
+

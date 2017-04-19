@@ -14,6 +14,9 @@ output:
 
 [Link to Barrington Lab Website](http://www.uvm.edu/~dbarring/DSBpeople.html)
 
+R Package Presentation   
+* [EcoSimR](EcoSimRPresentation_Fin.html)
+
 
 Lab assignments: 
 
