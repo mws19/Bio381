@@ -35,9 +35,9 @@ adMod1 <- cooc_null_model(PA,algo= "sim9",metric="checker",nReps=1000,suppressPr
 # Summary and plots
 summary(adMod1)
 mean(adMod1$Sim)
-plot(adMod1,type="burn_in")
 plot(adMod1,type="hist")
 plot(adMod1,type="cooc")
+plot(adMod1,type="burn_in")
 ```
 
 #### C score index
@@ -47,10 +47,9 @@ adMod2 <- cooc_null_model(PA,algo= "sim9",metric="c_score",nReps=1000)
 
 # Summary and plots
 summary(adMod2)
-plot(adMod2,type="burn_in")
 plot(adMod2,type="hist")
 plot(adMod2,type="cooc")
-
+plot(adMod2,type="burn_in")
 ```
 
 #### COMBO index

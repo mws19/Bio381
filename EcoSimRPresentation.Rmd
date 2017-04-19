@@ -10,7 +10,7 @@ output:
 ## 1. Create presence-absence matrix from species list data
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, set.eval=FALSE}
 # read in associated species data 
-sppDat <- read.table("AssociatedSpeciesData_Serp.csv",header=TRUE,sep=",",stringsAsFactors = FALSE)
+sppDat <- read.table("AssociatedSppData_Serp.csv",header=TRUE,sep=",",stringsAsFactors = FALSE)
 head(sppDat)
 ```
 
@@ -41,11 +41,8 @@ plot(adMod1,type="cooc")
 
 #### CHECKER index
 ```{r, echo=TRUE}
-set.seed(56)
 ## Run null model with SIM9 algorithm and C score index
 adMod2 <- cooc_null_model(PA,algo= "sim9",metric="c_score",nReps=1000,suppressProg=T,saveSeed=T)
-reproduce_model(adMod2)
-
 
 # Summary and plots
 summary(adMod2)
