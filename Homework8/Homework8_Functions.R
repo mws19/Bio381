@@ -3,28 +3,36 @@
 ## MWS
 
 #################################################################################
-# Function: Linear Regression
-# Description: 
+# Function: Regression
+# Description: Fits a regression line to a scatterplot of x and y values
 # input: continuous x & y variables
 # output: abline & scatterplot
 # ------------------------------------------------------------------------------
 
-linReg <- function(xVar=runif(100,min=0,max=100),
-                   yVar=runif(100,min=0,max=50),
+linReg <- function(xVar= 1:100,yVar=runif(100,min=0,max=100),
                    dataframe=data.frame(xVar,yVar)){
   linRegMod <- lm(yVar~xVar,data=dataframe)
   linRegOut <- c(slope=summary(linRegMod)$coefficients[2,1],
                  pValue=summary(linRegMod)$coefficients[2,4])
-  linRegPlot<- plot(y=dataframe$yVar,
-                    x=dataframe$xVar,
-                    main="Linear Regression",
-                    xlab="X Variable", 
-                    ylab="Y variable",
-                    xlim=range(xVar),
-                    ylim=range(yVar))
-  return(linRegOut)}
+    return(linRegOut)}
 
 linReg()
+
+linRegPlot <-  function(xVar=1:100,yVar=runif(100,min=0,max=100),dataframe=data.frame(xVar,yVar)){
+  lrplot <- plot(y=dataframe$yVar,
+                       x=dataframe$xVar,
+                 cex=2, 
+                 pch=20,
+                 bg="lightblue",
+                       main="Linear Regression",
+                       xlab="X Variable", 
+                       ylab="Y variable",
+                       xlim=range(xVar),
+                       ylim=range(yVar)
+                      )
+  return(linRegPlot)}
+
+linRegPlot()
 
 # tiny data set
 linReg(xVar=runif(10,min=0,max=20),yVar=runif(10,min=20,max=40))

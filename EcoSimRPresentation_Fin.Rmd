@@ -6,6 +6,14 @@ output:
   html_document: 
     theme: cerulean
 ---
+# EcoSimR - Null Model Analysis of Ecological Data
+
+### The following code demonstrates how to use the EcoSimR package to conduct a species co-occurrence analysis using null models. The results of this analysis reveal if there are statistically significant patterns of species aggregation or segregation in the dataset. 
+
+### The following code uses associated species data collected from 19 survey patches across five serpentine outcrops in northern VT, which was collected as part of a maidenhair fern habitat study in the summer of 2016. The following code transforms the associated species data into a presence-absence matrix that is then used for the null model analysis.
+
+[Associated Species Data](AssociatedSppData_Serp.csv)
+
 
 ## 1. Create presence-absence matrix from species list data
 ```{r, echo=TRUE, message=FALSE, warning=FALSE}
@@ -30,7 +38,11 @@ dim(PA)
 library(EcoSimR)
 library(MASS)
 # Run null model with SIM9 algorithm & CHECKER index
-adMod1 <- cooc_null_model(PA,algo= "sim9",metric="checker",nReps=1000,suppressProg=T)
+adMod1 <- cooc_null_model(PA,
+                    algo="sim9",
+                    metric="checker",
+                    nReps=1000,
+                    suppressProg=T)
 
 # Summary and plots
 summary(adMod1)
@@ -41,9 +53,13 @@ plot(adMod1,type="burn_in")
 ```
 
 #### C score index
-```{r, echo=TRUE, message=FALSE, warning=FALSE, eval=F}
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
 ## Run null model with SIM9 algorithm and C score index
-adMod2 <- cooc_null_model(PA,algo= "sim9",metric="c_score",nReps=1000)
+adMod2 <- cooc_null_model(PA,
+                          algo="sim9",
+                          metric="c_score",
+                          nReps=1000,
+                          suppressProg = T)
 
 # Summary and plots
 summary(adMod2)
@@ -55,7 +71,11 @@ plot(adMod2,type="burn_in")
 #### COMBO index
 ```{r, echo=TRUE,eval=F}
 # Run null model with SIM9 algorithm and COMBO index
-adMod3 <- cooc_null_model(PA,algo= "sim9",metric="species_combo",nReps=1000)
+adMod3 <- cooc_null_model(PA,
+                          algo="sim9",
+                          metric="species_combo",
+                          nReps=1000,
+                          suppressProg = T)
 
 # Summary and plots
 summary(adMod3)
@@ -66,9 +86,13 @@ plot(adMod3,type="cooc")
 ### SIM2 null model algorithm- row sums fixed, columns equiprobable
 
 #### CHECKER Index
-```{r, echo=TRUE,eval=F}
+```{r, echo=TRUE}
 # Run null model with SIM2 algorithm and C score index
-adMod4 <- cooc_null_model(PA,algo= "sim2",metric="c_score",nReps=1000)
+adMod4 <- cooc_null_model(PA,
+                          algo= "sim2",
+                          metric="c_score",
+                          nReps=1000,
+                          suppressProg=T)
 
 # Summary and plots
 summary(adMod4)
@@ -78,9 +102,13 @@ plot(adMod4,type="cooc")
 ```
 
 #### C score Index
-```{r, echo=TRUE,eval=F}
+```{r, echo=TRUE}
 # Run null model with SIM2 algorithm and CHECKER index
-adMod5 <- cooc_null_model(PA,algo= "sim2",metric="checker",nReps=1000)
+adMod5 <- cooc_null_model(PA,
+                          algo= "sim2",
+                          metric="checker",
+                          nReps=1000,
+                          suppressProg=T)
 
 # Summary and plots
 summary(adMod5)
@@ -91,9 +119,13 @@ plot(adMod5,type="cooc")
 
 
 #### V ratio Index
-```{r, echo=TRUE,eval=F}
+```{r, echo=TRUE}
 # Run null model with SIM2 algorithm and V ratio index
-adMod6 <- cooc_null_model(PA,algo= "sim2",metric="v_ratio",nReps=1000)
+adMod6 <- cooc_null_model(PA,
+                          algo= "sim2",
+                          metric="v_ratio",
+                          nReps=1000,
+                          suppressProg=T)
 
 # Summary and plots
 summary(adMod6)
@@ -102,9 +134,13 @@ plot(adMod6,type="cooc")
 ```
 
 #### COMBO Index
-```{r, echo=TRUE,eval=F}
+```{r, echo=TRUE}
 # Run null model with SIM2 algorithm and COMBO index
-adMod7 <- cooc_null_model(PA,algo= "sim2",metric="species_combo",nReps=1000)
+adMod7 <- cooc_null_model(PA,
+                          algo="sim2",
+                          metric="species_combo",
+                          nReps=1000,
+                          suppressProg=T)
 
 # Summary and plots
 summary(adMod7)

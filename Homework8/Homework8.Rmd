@@ -1,0 +1,187 @@
+---
+title: "Homework 8 - Functions for Statistical Analysis in R"
+author: "Morgan Southgate"
+date: "March 8, 2017"
+output: html_document
+---
+
+
+# Function: Linear Regression
+### Description: Fits a regression line to a scatterplot of x and y values
+### Input: continuous x & y variables
+### Output: abline & scatterplot
+```{r, echo=TRUE}
+linReg <- function(xVar= 1:100,yVar=runif(100,min=0,max=100),
+                   dataframe=data.frame(xVar,yVar)){
+  linRegMod <- lm(yVar~xVar,data=dataframe)
+  linRegOut <- c(slope=summary(linRegMod)$coefficients[2,1],
+                 pValue=summary(linRegMod)$coefficients[2,4])
+    return(linRegOut)}
+
+linReg()
+```
+
+##Function for plotting results of linear regression
+```{r, echo=TRUE}
+linRegPlot <-  function(xVar=1:100,yVar=runif(100,min=0,max=100),dataframe=data.frame(xVar,yVar)){
+  lrplot <- plot(y=dataframe$yVar,
+                       x=dataframe$xVar,
+                      cex=2, 
+                      pch=21,
+                      bg="purple",
+                      main="Linear Regression",
+                      xlab="X Variable", 
+                      ylab="Y variable",
+                      xlim=range(xVar),
+                      ylim=range(yVar))
+  linRegMod <- lm(yVar~xVar,data=dataframe)
+  abline(linRegMod)
+  return(lrplot)
+}
+
+linRegPlot()
+```
+
+##Testing linReg() & linRegPlot() with tiny data set
+```{r, echo=TRUE}
+# make tiny data set
+rdat <- data.frame(xVar=runif(10,min=0,max=20),yVar=runif(10,min=20,max=40))
+
+# test linReg function with rdat
+linReg(rdat)
+
+# test linRegPlot function with rdat
+linRegPlot(rdat)
+```
+
+# Function: Logistic Regression
+## Description: 
+## Input: continuous x variable & categorical y variable
+## Output: estimate of xvar and p value of xvar
+
+```{r, echo=TRUE}
+logReg <- function(xVar=rgamma(n=20,shape=5,scale=5), 
+                   yVar=rbinom(n=20,size=1,p=0.5)){
+  logRegMod <- glm(yVar~ xVar,
+                   family=binomial(link="logit"))
+  logRegOut <- c(xVarEst=summary(logRegMod)$coefficients[2,1],
+                 pValue=summary(logRegMod)$coefficients[2,4])
+   return(logRegOut)}
+
+logReg()
+```
+
+## Function for plotting results of logistic regression analysis
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+logRegPlot <- function(xVar=rgamma(n=20,shape=5,scale=5), 
+                       yVar=rbinom(n=20,size=1,p=0.5),dataframe = data.frame(xVar,yVar)){
+lrResults <- glm(yVar ~ xVar, family="binomial"(link="logit"))
+LRplot <- plot(dataframe$xVar, y=dataframe$yVar,
+                   pch=21,
+                   bg="tan",
+                   cex=1,
+                   main="Logistic Regression")
+LRplot1 <- curve(predict(lrResults,
+              data.frame(xVar=x),
+              type="response"),
+      add=TRUE,
+      lwd=2)
+return(LRplot1)}
+
+logRegPlot()
+```
+
+## Test logReg and logRegPlot functions with tiny data set
+```{r, echo=TRUE}
+# tiny data set
+xVar <- rgamma(n=30,shape=4,scale=4)
+yVar <- rbinom(n=30,size=1,p=0.5)
+df <- data.frame(xVar,yVar)
+ 
+# test logReg
+logReg(xVar=xVar,yVar=yVar)
+
+# test logRegPlot
+logRegPlot(xVar=xVar,yVar = yVar,dataframe=df)
+```
+
+
+# Function: ANOVA
+## input: categorical x variable and continuous y variable
+## output: p value
+```{r, echo=TRUE}
+analVar <- function(xVar=as.factor(rep(c("A","B","C","D","E"),each=3)),
+                    yVar=c(rgamma(10,shape=5,scale=5),rgamma(5,shape=5,scale=10))){
+                      df=data.frame(xVar,yVar)
+          aovMod <- aov(yVar~xVar,data=df)
+          aovOut <- summary(aovMod)[[1]][["Pr(>F)"]][1]
+         return(aovOut)}
+        
+analVar()
+```
+
+## Function for plotting boxplot to represent ANOVA results
+```{r, echo=TRUE}
+analVarPlot <- function(xVar=as.factor(rep(c("A","B","C","D","E"),each=3)),yVar=c(rgamma(15,shape=5,scale=5))){
+  df <- data.frame(xVar,yVar)
+  aovMod <- aov(yVar~xVar,data=df)
+  aovPlot <-  boxplot(yVar~xVar,
+                      data=df,
+                      col=c("red","yellow","blue","green","purple"),
+                    xlab=names(xVar),ylab=names(yVar))
+  return(aovPlot)}
+  
+analVarPlot() 
+```
+
+## test analVar and analVarPlot using tiny data set
+```{r, echo=TRUE}
+# make tiny data set
+xVar1 <- as.factor(rep(c("a","b","c"),each=5))
+yVar1 <- c(rgamma(10,shape=5,scale=5),rgamma(5,shape=5,scale=10))
+
+# test analVar() using tiny data set
+analVar(xVar=xVar1,yVar=yVar1)
+
+# test analVarPlot() using tiny data set
+analVarPlot(xVar=xVar1,yVar=yVar1)
+```
+
+# Function: Contingency Table
+## Input: discrete independent variable and discrete dependent variable
+## Output: 
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+contTable <- function(x=c(22,40,60),y=c(40,80,45),datamatrix=rbind(x,y)){
+  rownames(datamatrix)=c("Cold","Warm")
+  colnames(datamatrix)=c("Species1","Species2","Species3")
+  contTableMod <- chisq.test(datamatrix)
+  contTableOut <- print(chisq.test(datamatrix)[3])
+          return(contTableOut)}
+
+contTable()
+```
+
+## Function for plotting mosaic plot of data complementary to contingency table results
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+contPlot <- function(x=c(22,40,60),y=c(40,80,45),datamatrix=rbind(x,y)){
+  rownames(datamatrix)=c("Cold","Warm")
+  colnames(datamatrix)=c("Species1","Species2","Species3")
+  mplot <- mosaicplot(x=datamatrix,col=c("red","blue","yellow"),shade=F)
+  return(mplot)}
+
+contPlot()
+```
+
+## Test contingency table functions using tiny data set
+```{r, message=FALSE, warning=FALSE}
+x <- c(2,10,7)
+y <- c(20,40,50)
+dm <- rbind(x,y)
+
+# test contTable()
+contTable(x,y,dm)
+
+# test contPlot()
+contPlot(x,y,dm)
+```
+

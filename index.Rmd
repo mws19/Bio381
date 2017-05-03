@@ -27,7 +27,11 @@ Lab assignments:
 * [Homework 4 Part 1- Adiantum Soil Data](AdiantumSoilAnalysis.html)
 * [Homework 4 Part 2- Regular Expressions Practice](Homework4_Part2_RegExPractice.html)
 * [Homework 5 - Data Structures & Coding](Homework_5.html)
-* [Homework 6](Homework6_Southgate.html)
+* [Homework 6 & 7](Homework6_Southgate.html)
+* [Homework 8 - Functions for Statistical Analysis in R](Homework8.html)
+
+
+
 
 ![Adiantum aleuticum, Browns Ledges, Lowell VT](AleutianMaidenhairFern.jpg)
 

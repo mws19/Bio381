@@ -6,6 +6,8 @@ output:
   html_document: 
     theme: cerulean
 ---
+EcoSimR: Null Model Analysis of Ecological Data
+
 
 ## 1. Create presence-absence matrix from species list data
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, set.eval=FALSE}
