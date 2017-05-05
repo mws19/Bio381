@@ -29,6 +29,8 @@ Lab assignments:
 * [Homework 5 - Data Structures & Coding](Homework_5.html)
 * [Homework 6 & 7](Homework6_Southgate.html)
 * [Homework 8 - Functions for Statistical Analysis in R](Homework8.html)
+* [Homework 9 - Statistical Analysis with Real and Random Data](Homework9.html)
+* [Homework 10 - For Loops](Homework10.html)
 
 
 

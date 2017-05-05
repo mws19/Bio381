@@ -2,17 +2,18 @@
 title: "Homework 8 - Functions for Statistical Analysis in R"
 author: "Morgan Southgate"
 date: "March 8, 2017"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
-
 
 # Function: Linear Regression
 ### Description: Fits a regression line to a scatterplot of x and y values
 ### Input: continuous x & y variables
 ### Output: abline & scatterplot
 ```{r, echo=TRUE}
-linReg <- function(xVar= 1:100,yVar=runif(100,min=0,max=100),
-                   dataframe=data.frame(xVar,yVar)){
+linReg <- function(xVar= 1:100,yVar=runif(100,min=0,max=100)){
+  dataframe=data.frame(xVar,yVar)
   linRegMod <- lm(yVar~xVar,data=dataframe)
   linRegOut <- c(slope=summary(linRegMod)$coefficients[2,1],
                  pValue=summary(linRegMod)$coefficients[2,4])
@@ -23,7 +24,8 @@ linReg()
 
 ##Function for plotting results of linear regression
 ```{r, echo=TRUE}
-linRegPlot <-  function(xVar=1:100,yVar=runif(100,min=0,max=100),dataframe=data.frame(xVar,yVar)){
+linRegPlot <-  function(xVar=1:100,yVar=runif(100,min=0,max=100)){
+  dataframe=data.frame(xVar,yVar)
   lrplot <- plot(y=dataframe$yVar,
                        x=dataframe$xVar,
                       cex=2, 
@@ -110,19 +112,19 @@ logRegPlot(xVar=xVar,yVar = yVar,dataframe=df)
 ## input: categorical x variable and continuous y variable
 ## output: p value
 ```{r, echo=TRUE}
-analVar <- function(xVar=as.factor(rep(c("A","B","C","D","E"),each=3)),
+ANOV <- function(xVar=as.factor(rep(c("A","B","C","D","E"),each=3)),
                     yVar=c(rgamma(10,shape=5,scale=5),rgamma(5,shape=5,scale=10))){
                       df=data.frame(xVar,yVar)
           aovMod <- aov(yVar~xVar,data=df)
           aovOut <- summary(aovMod)[[1]][["Pr(>F)"]][1]
          return(aovOut)}
         
-analVar()
+ANOV()
 ```
 
 ## Function for plotting boxplot to represent ANOVA results
 ```{r, echo=TRUE}
-analVarPlot <- function(xVar=as.factor(rep(c("A","B","C","D","E"),each=3)),yVar=c(rgamma(15,shape=5,scale=5))){
+ANOVplot <- function(xVar=as.factor(rep(c("A","B","C","D","E"),each=3)),yVar=c(rgamma(15,shape=5,scale=5))){
   df <- data.frame(xVar,yVar)
   aovMod <- aov(yVar~xVar,data=df)
   aovPlot <-  boxplot(yVar~xVar,
@@ -131,20 +133,20 @@ analVarPlot <- function(xVar=as.factor(rep(c("A","B","C","D","E"),each=3)),yVar=
                     xlab=names(xVar),ylab=names(yVar))
   return(aovPlot)}
   
-analVarPlot() 
+ANOVplot() 
 ```
 
-## test analVar and analVarPlot using tiny data set
+## test ANOV and ANOVplot using tiny data set
 ```{r, echo=TRUE}
 # make tiny data set
 xVar1 <- as.factor(rep(c("a","b","c"),each=5))
 yVar1 <- c(rgamma(10,shape=5,scale=5),rgamma(5,shape=5,scale=10))
 
 # test analVar() using tiny data set
-analVar(xVar=xVar1,yVar=yVar1)
+ANOV(xVar=xVar1,yVar=yVar1)
 
-# test analVarPlot() using tiny data set
-analVarPlot(xVar=xVar1,yVar=yVar1)
+# test ANOVplot() using tiny data set
+ANOVplot(xVar=xVar1,yVar=yVar1)
 ```
 
 # Function: Contingency Table

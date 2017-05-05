@@ -1,77 +1,187 @@
 ---
-title: "Homework9"
+title: 'Homework 9 - '
 author: "Morgan Southgate"
 date: "March 29, 2017"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
-
-# Linear Regression
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
-# adiantum data
-adiantData <- read.table("QuantitativeDataAdiantum_mat.csv",sep=",",header=T,stringsAsFactors = F)
-head(adiantData)
-
-# Ca base sat and Mg base sat show significant negative correlation
-cabasat <- adiantData[,30]
-print(cabasat)
-
-mgbasat <- adiantData[,31]
-print(mgbasat)
-
-df <- data.frame(cabasat,mgbasat)
-print(df)
-
-linReg(xVar=cabasat,yVar=mgbasat,data=df)
-
-```
-
-# Logistic Regression
-
+## Import Adiantum quantitative ecological data
 ```{r}
-# Logistic regression with adiantum data
-adiDat <- read.table("QuantitativeDataAdiantum_serps.csv", header=T, stringsAsFactors = F,sep=",")
-print(adiDat)
+adDat <- read.table("QuantitativeDataAdiantum1.csv",sep=",",header=T,stringsAsFactors = F)
+head(adDat)
+tail(adDat)
 
-# transform NA values to 0
-adDat <- adiDat
+# Clean up data set by changing NA values to 0 - justified for this data-set where the missing values are an absent soil layer and no test results for heavy metal presence from rich northern hardwood forest sites
+# Transform NA values to 0
 adDat[is.na(adDat)]<- 0
 head(adDat)
 dim(adDat)
+```
 
-# set x & y variables
-yVar <- adDat[,2]
-xVar <- adDat[,31]
-df <- data.frame(yVar,xVar)
 
-# run with adiantum data
-logReg(xVar=xVar,yVar=yVar)
+## Linear Regression of Ca:Mg ratio
 
-glm(yVar ~ xVar,family=gaussian)
+##
+```{r, include=FALSE}
+# Put functions in here
+##Linear regression function
+linReg <- function(xVar= 1:100,yVar=runif(100,min=0,max=100)){
+  dataframe=data.frame(xVar,yVar)
+  linRegMod <- lm(yVar~xVar,data=dataframe)
+  linRegOut <- c(slope=summary(linRegMod)$coefficients[2,1],
+                 pValue=summary(linRegMod)$coefficients[2,4])
+    return(linRegOut)}
 
+linRegPlot <-  function(xVar=1:100,yVar=runif(100,min=0,max=100)){
+  dataframe=data.frame(xVar,yVar)
+  lrplot <- plot(y=dataframe$yVar,
+                       x=dataframe$xVar,
+                      cex=2, 
+                      pch=21,
+                      bg="purple",
+                      main="Linear Regression",
+                      xlab="X Variable", 
+                      ylab="Y variable",
+                      xlim=range(xVar),
+                      ylim=range(yVar))
+  linRegMod <- lm(yVar~xVar,data=dataframe)
+  abline(linRegMod)
+  return(lrplot)
+}
 
 ```
 
 
-# ANOVA
+
+```{r, echo=T}
+# Use the linear regression function to test the relationship between soil concentrations of Ca and Mg, the ratio of which characterizes the degree of serpentine content in the soil 
+linReg(xVar=adDat$Ca,yVar=adDat$Mg)
+
+# plot results using linRegPlot
+linRegPlot(xVar=adDat$Ca,yVar=adDat$Mg)
+```
+
+## Logistic Regression of Depth A Soil Layer between A. aleuticum & A. viridimontanum
+```{r, include=FALSE}
+# Function for logistic regression in R from HW 8
+logReg <- function(xVar=rgamma(n=20,shape=5,scale=5), 
+                   yVar=rbinom(n=20,size=1,p=0.5)){
+  logRegMod <- glm(yVar~ xVar,
+                   family=binomial(link="logit"))
+  logRegOut <- c(xVarEst=summary(logRegMod)$coefficients[2,1],
+                 pValue=summary(logRegMod)$coefficients[2,4])
+   return(logRegOut)}
+
+# Function for plotting logistic regression results in R from HW8
+logRegPlot <- function(xVar=rgamma(n=20,shape=5,scale=5), 
+                       yVar=rbinom(n=20,size=1,p=0.5),dataframe = data.frame(xVar,yVar)){
+lrResults <- glm(yVar ~ xVar, family="binomial"(link="logit"))
+LRplot <- plot(dataframe$xVar, y=dataframe$yVar,
+                   pch=21,
+                   bg="tan",
+                   cex=1,
+                   main="Logistic Regression")
+LRplot1 <- curve(predict(lrResults,
+              data.frame(xVar=x),
+              type="response"),
+      add=TRUE,
+      lwd=2)
+return(LRplot1)}
+
+logRegPlot()
+```
+
 ```{r}
-adiDat <- read.table("QuantitativeDataAdiantum_mat.csv", header=T, stringsAsFactors = F,sep=",")
-print(adiDat)
+# subset out just the serpentine maidenhair data from adDat
+serpDatA <- subset(adDat,SpeciesID=="A")
+serpDatV <- subset(adDat,SpeciesID=="V")
 
-# transform NA values to 0
-adDat <- adiDat
-adDat[is.na(adDat)]<- 0
-head(adDat)
-dim(adDat)
+# create new species id column so that to get rid of categorical letter id variable so that A. aleuticum species id=0 and A. viridimontanum species id=1
+dim(serpDatA)
+dim(serpDatV)
 
-# assign x and y variables
-xVar1 <- adDat[,2]
-yVar1 <- adDat[,4]
+id <- rep("0",length=6)
+serpDatA <- cbind(serpDatA,id)
 
-analVar(xVar1=xVar1,yVar1=yVar1)
+id <- rep("1",length=9)
+serpDatV <- cbind(serpDatV,id)
+
+# combine both subsets into a single data frame serpDat
+serpDat <- rbind(serpDatA,serpDatV)
+
+# Test the difference in depth of the A soil layer between the two serpentine maidenhairs using logistic regression 
+logReg(xVar=serpDat$AvgDepthA,yVar=serpDat$id)
+logRegPlot(xVar=serpDat$AvgDepthA,yVar=serpDat$id)
 
 ```
+
+
+##Test variation in depth of the A layer between species groups using ANOVA
+### Run ANOV & ANOVplot functions from HW8
+```{r}
+ANOV <- function(xVar=as.factor(rep(c("A","B","C","D","E"),each=3)),
+                    yVar=c(rgamma(10,shape=5,scale=5),rgamma(5,shape=5,scale=10))){
+                      df=data.frame(xVar,yVar)
+          aovMod <- aov(yVar~xVar,data=df)
+          aovOut <- summary(aovMod)[[1]][["Pr(>F)"]][1]
+         return(aovOut)}
+
+ANOVplot <- function(xVar=as.factor(rep(c("A","B","C","D","E"),each=3)),yVar=c(rgamma(15,shape=5,scale=5))){
+  df <- data.frame(xVar,yVar)
+  aovMod <- aov(yVar~xVar,data=df)
+  aovPlot <-  boxplot(yVar~xVar,
+                      data=df,
+                      col=c("red","yellow","blue","green","purple"),
+                    xlab=names(xVar),ylab=names(yVar))
+  return(aovPlot)}
+  
+ANOVplot()
+```
+
+
+```{r}
+ANOV(xVar=adDat$SpeciesID,yVar=adDat$AvgDepthA)
+ANOVplot(xVar=adDat$SpeciesID,yVar=adDat$AvgDepthA)
+
+```
+
+##Construct random data set with the same structure as original data
+```{r}
+library(MASS)
+fitMg <- fitdistr(adDat$Mg,"gamma")
+ranMg <- rnorm(30,mean=1050,sd=670)
+
+fitdistr(adDat$Ca,"normal")
+ranCa <- rnorm(30,mean=675,sd=451)
+
+randomData <- cbind(ranCa,ranMg)
+head(randomData)
+```
+
+## Construct random data set with same structure as original data using dgamma
+```{r}
+library(MASS)
+# use the fitdistr function to get parameters of percent organic matter in soil using gamma distribution
+fitom <- fitdistr(adDat$Ompct,"gamma")
+
+# make a new randomly generated %OM variable using parameters from above
+randOM <- rgamma(30,fitom$estimate[1],fitom$estimate[2])
+
+# Create vector of species id's and assign to randomly generated randOM values
+spID <- c("A","V")
+ranSpID <- rep(spID,length=30)
+ranDat <- data.frame(ranSpID,randOM)
+
+#Run ANOVA with randomly generated values - returns non-significant result
+ANOV(xVar=ranDat$ranSpID,yVar=ranDat$randOM)
+
+
+```
+
+
+
+
+
 

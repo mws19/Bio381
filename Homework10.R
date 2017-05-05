@@ -17,7 +17,7 @@ print(sum(w))
 
 ## Number 2
 
-length(v[v==0])
+
 
 ## Number 3
 
@@ -35,14 +35,26 @@ MaxDiff <- function(x=rep(-5:5,each=1)) {
 
 MaxDiff()
 
+
 ### Number 4
 MaxDiff1 <- function(x=rep(-5:5,each=1)){
-  for (i in seq_along(x)){
-    diff <- c(dist(x))
+  mat <- matrix(nrow=length(x),ncol=length(x))
+  rownames(mat) <- x
+  colnames(mat)<- x
+    for (i in seq_along(x)){
+    for (j in seq_along(x)){
+     mat[i,j]<- x[i]-x[j]
+    }
   }
-  return(c(max(diff)))
-}
-MaxDiff1()
+  z <- c(mat)
+  x <- which(mat==max(abs(mat)), arr.ind=TRUE)
+  w<-colnames(mat)[x[1,1]]
+  t<-rownames(mat)[x[1,2]]
+  return(list(c(w,t),x,max(abs(z))))
+  }
+   
+MaxDiff1()    
+    
 
 # Number 4 - Alex's Solution
 X =rnorm(20,mean=0,sd=0)
@@ -73,7 +85,49 @@ return(max_difference)
 
 max_diff()
 
+# Number 6 - Matrix multiplication
+mat1 <- matrix(data=1:100,10,10,byrow=T)
+mat2 <- matrix(data=101:200,10,10,byrow=T)
+
+m1 = matrix(c(1:6),2,3, byrow = T)
+m2 = matrix(c(7:12),3,2, byrow = T)
+
+MultMat = function(m1=matrix(data=1:25,nrow=5,ncol=5,byrow=T),m2=t(m1)){
+  m = matrix(0, nrow(m1), ncol(m2))
+  if (dim(m1) != dim(m2)){
+    cat("input matrices are of different dimensions", "\n")
+  } else {
+    for (i in 1:nrow(m1)){
+      for (j in 1:ncol(m2)){
+        cell_val = sum(m1[i,]*m2[,j])
+        m[i,j] = cell_val
+      }
+    }
+  }
+  return(m)
+}
+
+c1 <- matrix(data=1:4,2,2,byrow=T)
+MultMat()
 
 
+M1 = matrix(c(1:6),2,3, byrow = T)
+M2 = matrix(c(7:12),3,2, byrow = T)
 
-  
+MatMult = function(m1=matrix(data=1:10,nrow=2,ncol=5),m2=t(m1)){
+   m = matrix(0, nrow(m1), ncol(m2))
+  if (nrow(m1) != ncol(m2)){
+    cat("input matrices are not correct dimensions", "\n")
+  } else {
+    for (nr in 1:nrow(m1)){
+      for (nc in 1:ncol(m2)){
+        cell_val = sum(m1[nr,]*m2[,nc])
+        m[nr,nc] = cell_val
+      }
+    }
+  }
+  return(m)
+}
+
+MatMult()
+m1%*%m2
