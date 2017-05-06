@@ -123,68 +123,54 @@ $(document).ready(function () {
 </div>
 
 
-<div id="number-1---function-to-calculate-the-number-of-zeroes-in-an-atomic-vector" class="section level2">
-<h2>Number 1 - function to calculate the number of zeroes in an atomic vector</h2>
-<pre class="r"><code># Make a vector v with five replications of the sequence 0:9
-v &lt;- rep(0:9,each=5)
-print(v)</code></pre>
-<pre><code>##  [1] 0 0 0 0 0 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5 5 5 5 5 6 6 6 6 6
-## [36] 7 7 7 7 7 8 8 8 8 8 9 9 9 9 9</code></pre>
-<pre class="r"><code>w &lt;- vector(mode=&quot;numeric&quot;)
-
-# Write a for loop function to calculate the number of zeroes in the atomic vector v
+<div id="number-1" class="section level2">
+<h2>Number 1</h2>
+<div id="a-function-to-calculate-the-number-of-zeroes-in-an-atomic-vector-v" class="section level3">
+<h3>A function to calculate the number of zeroes in an atomic vector v</h3>
+<pre class="r"><code>zeroSum &lt;- function(v=rep(-10:10,times=3)){
+w &lt;- vector(mode=&quot;numeric&quot;)
 for (i in seq_along(v)){
   if(v[i]==0) w[i] &lt;- 1 else
    w[i] &lt;- 0
 }
+return(print(sum(w)))
+}
 
-print(sum(w))</code></pre>
-<pre><code>## [1] 5</code></pre>
-</div>
-<div id="number-2" class="section level1">
-<h1>Number 2</h1>
-<div id="using-subsetting-rather-than-for-loops-to-accomplish-the-same-thing" class="section level2">
-<h2>Using subsetting rather than for loops to accomplish the same thing</h2>
-<pre class="r"><code>length(v[v==0])</code></pre>
-<pre><code>## [1] 5</code></pre>
+zeroSum()</code></pre>
+<pre><code>## [1] 3</code></pre>
 </div>
 </div>
-<div id="number-3" class="section level1">
-<h1>Number 3</h1>
-<div id="code-for-the-function-maxdiff-which-returns-the-maximum-difference-between-all-possible-pairs-of-elements-in-an-atomic-vector" class="section level2">
-<h2>Code for the function MaxDiff which returns the maximum difference between all possible pairs of elements in an atomic vector</h2>
-<pre class="r"><code>####################################################################################
-# FUNCTION MaxDiff
-# takes a numeric vector and returns as output the maximum difference between all possible pairs of elements
-# input: numeric vector x
-# output: maximum difference y
-#----------------------------------------------------------------------------------
+<div id="number-2" class="section level2">
+<h2>Number 2</h2>
+<div id="using-subsetting-rather-than-for-loops-to-accomplish-the-same-thing-as-in-number-1" class="section level3">
+<h3>Using subsetting rather than for loops to accomplish the same thing as in number 1</h3>
+<pre class="r"><code>v=rep(-10:10,times=3)
 
-MaxDiff &lt;- function(x=rep(-5:5,each=1)) {
+length(v[v==0])</code></pre>
+<pre><code>## [1] 3</code></pre>
+</div>
+</div>
+<div id="number-3" class="section level2">
+<h2>Number 3</h2>
+<div id="code-for-the-function-maxdiff-which-returns-the-maximum-difference-between-all-possible-pairs-of-elements-in-an-atomic-vector" class="section level3">
+<h3>Code for the function maxDiff() which returns the maximum difference between all possible pairs of elements in an atomic vector</h3>
+<pre class="r"><code>maxDiff &lt;- function(x=rep(-5:5,each=1)) {
    diff &lt;- c(dist(x))
   return(max(diff))
 }
 
-MaxDiff()</code></pre>
+maxDiff()</code></pre>
 <pre><code>## [1] 10</code></pre>
 </div>
 </div>
 <div id="number-4" class="section level1">
 <h1>Number 4</h1>
-<div id="altering-the-maxdiff-function-to-output-the-numbered-positions-of-the-maximally-distant-numbers-in-the-atomic-vector-and-the-maximum-distance-between-the-two-as-the-second-and-third-elements-in-the-output" class="section level3">
-<h3>Altering the MaxDiff function to output the numbered positions of the maximally distant numbers in the atomic vector and the maximum distance between the two as the second and third elements in the output</h3>
+<div id="altering-the-maxdiff-function-to-output-the-values-and-numbered-positions-of-the-maximally-distant-numbers-in-the-atomic-vector-as-the-second-and-third-elements-in-the-output" class="section level3">
+<h3>Altering the maxDiff function to output the values and numbered positions of the maximally distant numbers in the atomic vector as the second and third elements in the output</h3>
 </div>
 <div id="based-on-code-written-by-alex-burnham" class="section level3">
 <h3>Based on code written by Alex Burnham</h3>
-<pre class="r"><code>####################################################################################
-# FUNCTION MaxDiff
-# takes a numeric vector and returns as output the maximum difference between all possible pairs of elements
-# input: numeric vector x
-# output: maximum difference y
-#----------------------------------------------------------------------------------
-
-### Number 4
-MaxDiff1 &lt;- function(x=rep(-5:5,each=1)){
+<pre class="r"><code>maxDiff1 &lt;- function(x=rep(-5:5,each=1)){
   mat &lt;- matrix(nrow=length(x),ncol=length(x))
   rownames(mat) &lt;- x
   colnames(mat)&lt;- x
@@ -200,7 +186,7 @@ MaxDiff1 &lt;- function(x=rep(-5:5,each=1)){
   return(list(c(w,t),x,max(abs(z))))
   }
    
-MaxDiff1() </code></pre>
+maxDiff1() </code></pre>
 <pre><code>## [[1]]
 ## [1] &quot;5&quot;  &quot;-5&quot;
 ## 
@@ -211,18 +197,38 @@ MaxDiff1() </code></pre>
 ## [[3]]
 ## [1] 10</code></pre>
 </div>
+<div id="number-5" class="section level2">
+<h2>Number 5</h2>
+<div id="making-a-function-maxdiff2-which-does-the-same-thing-as-maxdiff1-but-that-works-by-storing-a-temporary-variable-that-keeps-track-of-differences-and-retains-the-largest" class="section level3">
+<h3>Making a function maxDiff2 which does the same thing as maxDiff1 but that works by storing a temporary variable that keeps track of differences and retains the largest</h3>
 </div>
-<div id="number-5" class="section level1">
-<h1>Number 5</h1>
+<div id="code-shared-by-alex-looi" class="section level3">
+<h3>Code shared by Alex Looi</h3>
+<pre class="r"><code> maxDiff2 &lt;- function(x=rep(-10:10,by=1)){
+  tempPairs =expand.grid(x,x)
+  diffPairs = abs(tempPairs$Var1 - tempPairs$Var2)
+  temp_max = 0
+  for(v in 1:length(diffPairs)){
+    
+    if(temp_max &lt;= diffPairs[v]){
+      temp_max = diffPairs[v]
+    }
+  }
+  return(temp_max)
+}
+
+maxDiff2()</code></pre>
+<pre><code>## [1] 20</code></pre>
 </div>
-<div id="number-6" class="section level1">
-<h1>Number 6</h1>
+</div>
+<div id="number-6" class="section level2">
+<h2>Number 6</h2>
 <div id="a-function-that-takes-as-input-two-matrices-and-multiplies-them-together-using-the-rules-of-matrix-multiplication" class="section level3">
 <h3>A function that takes as input two matrices and multiplies them together using the rules of matrix multiplication</h3>
 </div>
 <div id="based-on-code-shared-by-alex-looi" class="section level3">
 <h3>Based on code shared by Alex Looi</h3>
-<pre class="r"><code>MatMult = function(m1=matrix(data=1:10,nrow=2,ncol=5),m2=t(m1)){
+<pre class="r"><code>matMult = function(m1=matrix(data=1:10,nrow=2,ncol=5),m2=t(m1)){
    m = matrix(0, nrow(m1), ncol(m2))
   if (nrow(m1) != ncol(m2)){
     cat(&quot;input matrices are not correct dimensions&quot;, &quot;\n&quot;)
@@ -238,7 +244,7 @@ MaxDiff1() </code></pre>
 }
 
 # test function with default parameter
-MatMult()</code></pre>
+matMult()</code></pre>
 <pre><code>##      [,1] [,2]
 ## [1,]  165  190
 ## [2,]  190  220</code></pre>
@@ -249,6 +255,30 @@ m1%*%m2</code></pre>
 <pre><code>##      [,1] [,2]
 ## [1,]  165  190
 ## [2,]  190  220</code></pre>
+</div>
+</div>
+<div id="number-7" class="section level2">
+<h2>Number 7</h2>
+<div id="a-function-that-takes-two-integers-representing-the-numbers-of-rows-and-columns-in-a-matrix-and-returns-a-matrix-of-these-dimensions-in-which-the-value-of-each-cell-is-the-product-of-the-row-number-x-column-number." class="section level3">
+<h3>A function that takes two integers representing the numbers of rows and columns in a matrix and returns a matrix of these dimensions in which the value of each cell is the product of the row number x column number.</h3>
+<pre class="r"><code>matDims &lt;- function(nr=sample(1:20,size=1),nc=sample(1:20,size=1)){
+  mat = matrix(0,nr=nr,nc=nc)
+  
+ for (r in 1:nr){
+      for (c in 1:nc){
+      mat[r,c] = r*c
+    }}
+    return(mat)
+}  
+
+matDims()</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12] [,13]
+## [1,]    1    2    3    4    5    6    7    8    9    10    11    12    13
+## [2,]    2    4    6    8   10   12   14   16   18    20    22    24    26
+##      [,14]
+## [1,]    14
+## [2,]    28</code></pre>
+</div>
 </div>
 </div>
 

@@ -5,59 +5,47 @@ date: "May 3, 2017"
 output: html_document
 ---
 
-## Number 1 - function to calculate the number of zeroes in an atomic vector 
+## Number 1
+### A function to calculate the number of zeroes in an atomic vector v
 ```{r}
-# Make a vector v with five replications of the sequence 0:9
-v <- rep(0:9,each=5)
-print(v)
+zeroSum <- function(v=rep(-10:10,times=3)){
 w <- vector(mode="numeric")
-
-# Write a for loop function to calculate the number of zeroes in the atomic vector v
 for (i in seq_along(v)){
   if(v[i]==0) w[i] <- 1 else
    w[i] <- 0
 }
+return(print(sum(w)))
+}
 
-print(sum(w))
+zeroSum()
 ```
 
-# Number 2
-## Using subsetting rather than for loops to accomplish the same thing
+## Number 2
+### Using subsetting rather than for loops to accomplish the same thing as in number 1
 ```{r}
+v=rep(-10:10,times=3)
+
 length(v[v==0])
 ```
 
-#Number 3
-## Code for the function MaxDiff which returns the maximum difference between all possible pairs of elements in an atomic vector 
+##Number 3
+### Code for the function maxDiff() which returns the maximum difference between all possible pairs of elements in an atomic vector 
 ```{r}
-####################################################################################
-# FUNCTION MaxDiff
-# takes a numeric vector and returns as output the maximum difference between all possible pairs of elements
-# input: numeric vector x
-# output: maximum difference y
-#----------------------------------------------------------------------------------
 
-MaxDiff <- function(x=rep(-5:5,each=1)) {
+maxDiff <- function(x=rep(-5:5,each=1)) {
    diff <- c(dist(x))
   return(max(diff))
 }
 
-MaxDiff()
+maxDiff()
 ```
 
 # Number 4 
-### Altering the MaxDiff function to output the numbered positions of the maximally distant numbers in the atomic vector and the maximum distance between the two as the second and third elements in the output
+### Altering the maxDiff function to output the values and numbered positions of the maximally distant numbers in the atomic vector as the second and third elements in the output
 ### Based on code written by Alex Burnham
-```{r}
-####################################################################################
-# FUNCTION MaxDiff
-# takes a numeric vector and returns as output the maximum difference between all possible pairs of elements
-# input: numeric vector x
-# output: maximum difference y
-#----------------------------------------------------------------------------------
+```{r, echo=TRUE}
 
-### Number 4
-MaxDiff1 <- function(x=rep(-5:5,each=1)){
+maxDiff1 <- function(x=rep(-5:5,each=1)){
   mat <- matrix(nrow=length(x),ncol=length(x))
   rownames(mat) <- x
   colnames(mat)<- x
@@ -73,19 +61,34 @@ MaxDiff1 <- function(x=rep(-5:5,each=1)){
   return(list(c(w,t),x,max(abs(z))))
   }
    
-MaxDiff1() 
+maxDiff1() 
 ```
 
-# Number 5
+## Number 5
+### Making a function maxDiff2 which does the same thing as maxDiff1 but that works by storing a temporary variable that keeps track of differences and retains the largest 
+### Code shared by Alex Looi
 ```{r}
+ maxDiff2 <- function(x=rep(-10:10,by=1)){
+  tempPairs =expand.grid(x,x)
+  diffPairs = abs(tempPairs$Var1 - tempPairs$Var2)
+  temp_max = 0
+  for(v in 1:length(diffPairs)){
+    
+    if(temp_max <= diffPairs[v]){
+      temp_max = diffPairs[v]
+    }
+  }
+  return(temp_max)
+}
 
+maxDiff2()
 ```
 
-# Number 6
+## Number 6
 ### A function that takes as input two matrices and multiplies them together using the rules of matrix multiplication
 ### Based on code shared by Alex Looi
 ```{r}
-MatMult = function(m1=matrix(data=1:10,nrow=2,ncol=5),m2=t(m1)){
+matMult = function(m1=matrix(data=1:10,nrow=2,ncol=5),m2=t(m1)){
    m = matrix(0, nrow(m1), ncol(m2))
   if (nrow(m1) != ncol(m2)){
     cat("input matrices are not correct dimensions", "\n")
@@ -101,7 +104,7 @@ MatMult = function(m1=matrix(data=1:10,nrow=2,ncol=5),m2=t(m1)){
 }
 
 # test function with default parameter
-MatMult()
+matMult()
 
 # compare results to those obtained by using the built-in R function
 m1=matrix(data=1:10,nrow=2,ncol=5)
@@ -109,16 +112,19 @@ m2=t(m1)
 m1%*%m2
 ```
 
+## Number 7 
+### A function that takes two integers representing the numbers of rows and columns in a matrix and returns a matrix of these dimensions in which the value of each cell is the product of the row number x column number. 
+```{r}
+matDims <- function(nr=sample(1:20,size=1),nc=sample(1:20,size=1)){
+  mat = matrix(0,nr=nr,nc=nc)
+  
+ for (r in 1:nr){
+      for (c in 1:nc){
+      mat[r,c] = r*c
+    }}
+    return(mat)
+}  
 
+matDims()
 
-
-
-
-
-
-
-
-
-
-
-
+```
