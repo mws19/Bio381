@@ -12,13 +12,15 @@ output:
 
 In the fall of 2017, I will be starting as a Master's Candidate in the Barrington Lab of the Plant Biology Dept, UVM. My research focuses on ecological niche differentiation within the *Adiantum pedatum* complex, a clade of maidenhair ferns, in northeastern North America. 
 
+![Adiantum aleuticum, Browns Ledges, Lowell VT](AleutianMaidenhairFern.jpg)
+
 [Link to Barrington Lab Website](http://www.uvm.edu/~dbarring/DSBpeople.html)
 
 
 ## Computational Biology
 
 R Package Presentation   
-* [EcoSimR](EcoSimRPresentation_Fin.html)
+* [EcoSimR](EcoSimRPres_MSouthgate.html)
 
 
 Lab assignments: 
@@ -38,7 +40,7 @@ Lab assignments:
 
 
 
-![Adiantum aleuticum, Browns Ledges, Lowell VT](AleutianMaidenhairFern.jpg)
+
 
 
 
