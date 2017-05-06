@@ -4,15 +4,18 @@ author: "Morgan Southgate"
 date: "January 18, 2017"
 output: 
  prettydoc::html_pretty:
-    theme: hpstr
+    theme: cerulean
     highlight: github
 ---
 
 # Morgan Southgate
 
-## Computational Biology
+In the fall of 2017, I will be starting as a Master's Candidate in the Barrington Lab of the Plant Biology Dept, UVM. My research focuses on ecological niche differentiation within the *Adiantum pedatum* complex, a clade of maidenhair ferns, in northeastern North America. 
 
 [Link to Barrington Lab Website](http://www.uvm.edu/~dbarring/DSBpeople.html)
+
+
+## Computational Biology
 
 R Package Presentation   
 * [EcoSimR](EcoSimRPresentation_Fin.html)
@@ -21,13 +24,13 @@ R Package Presentation
 Lab assignments: 
 
 * [Homework 1](test.html)   
-* [Homework 2](Homework2.html)
+* [Homework 2 - Tools to Structure Hypotheses](Homework2.html)
 * [Homework 3 Part 1- Beech Bark Disease Complex Powerpoint](BBD_Complex.pdf) 
 * [Homework 3 Part 2 - Adiantum Logic Tree](Adiantum_LogicTree.html) 
 * [Homework 4 Part 1- Adiantum Soil Data](AdiantumSoilAnalysis.html)
 * [Homework 4 Part 2- Regular Expressions Practice](Homework4_Part2_RegExPractice.html)
 * [Homework 5 - Data Structures & Coding](Homework_5.html)
-* [Homework 6 & 7](Homework6_Southgate.html)
+* [Homework 6 & 7 - Function Definitions](Homework6_Southgate.html)
 * [Homework 8 - Functions for Statistical Analysis in R](Homework8.html)
 * [Homework 9 - Statistical Analysis with Real and Random Data](Homework9.html)
 * [Homework 10 - For Loops](Homework10.html)

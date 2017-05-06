@@ -1,5 +1,5 @@
 ---
-title: 'Homework 9 - '
+title: 'Homework 9 - statistical analysis of real and randomized data'
 author: "Morgan Southgate"
 date: "March 29, 2017"
 output:
@@ -10,20 +10,20 @@ output:
 ## Import Adiantum quantitative ecological data
 ```{r}
 adDat <- read.table("QuantitativeDataAdiantum1.csv",sep=",",header=T,stringsAsFactors = F)
-head(adDat)
-tail(adDat)
+head(adDat,3)
+tail(adDat,3)
 
 # Clean up data set by changing NA values to 0 - justified for this data-set where the missing values are an absent soil layer and no test results for heavy metal presence from rich northern hardwood forest sites
 # Transform NA values to 0
 adDat[is.na(adDat)]<- 0
-head(adDat)
+head(adDat,3)
 dim(adDat)
 ```
 
+# Part 1: Statisticlly analyze real data
 
-## Linear Regression of Ca:Mg ratio
-
-##
+## Linear Regression of Ca:Mg ratio in soil
+### Serpentine soil is characterized by the calcium to magnesium ratio. Are these two elements inversely related to one another in the dataset that I gathered?
 ```{r, include=FALSE}
 # Put functions in here
 ##Linear regression function
@@ -54,16 +54,18 @@ linRegPlot <-  function(xVar=1:100,yVar=runif(100,min=0,max=100)){
 ```
 
 
-
 ```{r, echo=T}
-# Use the linear regression function to test the relationship between soil concentrations of Ca and Mg, the ratio of which characterizes the degree of serpentine content in the soil 
+# Use the linear regression function to test the relationship between soil concentrations of Ca and Mg in adDat
 linReg(xVar=adDat$Ca,yVar=adDat$Mg)
 
 # plot results using linRegPlot
 linRegPlot(xVar=adDat$Ca,yVar=adDat$Mg)
+
+# Based on this analysis the concentrations of Ca and Mg in my soil sample data appear to have a significant inverse relationship
 ```
 
-## Logistic Regression of Depth A Soil Layer between A. aleuticum & A. viridimontanum
+## Logistic Regression of Depth A Soil Layer between the serpentine species *A. aleuticum* & *A. viridimontanum*
+
 ```{r, include=FALSE}
 # Function for logistic regression in R from HW 8
 logReg <- function(xVar=rgamma(n=20,shape=5,scale=5), 
@@ -77,28 +79,28 @@ logReg <- function(xVar=rgamma(n=20,shape=5,scale=5),
 # Function for plotting logistic regression results in R from HW8
 logRegPlot <- function(xVar=rgamma(n=20,shape=5,scale=5), 
                        yVar=rbinom(n=20,size=1,p=0.5),dataframe = data.frame(xVar,yVar)){
-lrResults <- glm(yVar ~ xVar, family="binomial"(link="logit"))
-LRplot <- plot(dataframe$xVar, y=dataframe$yVar,
+lrResults = glm(yVar ~ xVar, family="binomial"(link="logit"))
+LRplot = plot(dataframe$xVar, y=dataframe$yVar,
                    pch=21,
                    bg="tan",
                    cex=1,
                    main="Logistic Regression")
-LRplot1 <- curve(predict(lrResults,
+LRplot = curve(predict(lrResults,
               data.frame(xVar=x),
               type="response"),
       add=TRUE,
       lwd=2)
-return(LRplot1)}
+return(LRplot)}
 
 logRegPlot()
 ```
 
-```{r}
+```{r, echo=TRUE}
 # subset out just the serpentine maidenhair data from adDat
 serpDatA <- subset(adDat,SpeciesID=="A")
 serpDatV <- subset(adDat,SpeciesID=="V")
 
-# create new species id column so that to get rid of categorical letter id variable so that A. aleuticum species id=0 and A. viridimontanum species id=1
+# create new species id column to be used in place of letter species id for logistic regression, so that A. aleuticum species id=0 and A. viridimontanum species id=1
 dim(serpDatA)
 dim(serpDatV)
 
@@ -111,7 +113,7 @@ serpDatV <- cbind(serpDatV,id)
 # combine both subsets into a single data frame serpDat
 serpDat <- rbind(serpDatA,serpDatV)
 
-# Test the difference in depth of the A soil layer between the two serpentine maidenhairs using logistic regression 
+# Test the difference in depth of the A soil layer between the two serpentine maidenhairs using logistic regression - the difference is non-significant, with a p-value of .13. 
 logReg(xVar=serpDat$AvgDepthA,yVar=serpDat$id)
 logRegPlot(xVar=serpDat$AvgDepthA,yVar=serpDat$id)
 
@@ -119,8 +121,8 @@ logRegPlot(xVar=serpDat$AvgDepthA,yVar=serpDat$id)
 
 
 ##Test variation in depth of the A layer between species groups using ANOVA
-### Run ANOV & ANOVplot functions from HW8
-```{r}
+
+```{r, include=FALSE}
 ANOV <- function(xVar=as.factor(rep(c("A","B","C","D","E"),each=3)),
                     yVar=c(rgamma(10,shape=5,scale=5),rgamma(5,shape=5,scale=10))){
                       df=data.frame(xVar,yVar)
@@ -142,44 +144,87 @@ ANOVplot()
 
 
 ```{r}
+# run anova on the avg depth of the A layer of the soil 
 ANOV(xVar=adDat$SpeciesID,yVar=adDat$AvgDepthA)
 ANOVplot(xVar=adDat$SpeciesID,yVar=adDat$AvgDepthA)
 
 ```
 
-##Construct random data set with the same structure as original data
+# Part 2: Statistical Analysis of Randomized Data
+
+## Make a function ranDat that measures the parameters of a vector or a column of a dataframe using the fitdistr function from the MASS package and the rgamma function to simulate continuous random values over 0.
 ```{r}
 library(MASS)
-fitMg <- fitdistr(adDat$Mg,"gamma")
-ranMg <- rnorm(30,mean=1050,sd=670)
+ranDat <- function(var=rnorm(29,10,1),dist="gamma",n=29){
+  fitvar =  fitdistr(var,densfun=dist)
+  ranvar = rgamma(n,shape=fitvar$estimate[1],scale=fitvar$estimate[2])
+                return(print(ranvar))}
 
-fitdistr(adDat$Ca,"normal")
-ranCa <- rnorm(30,mean=675,sd=451)
-
-randomData <- cbind(ranCa,ranMg)
-head(randomData)
+ranDat()
 ```
 
-## Construct random data set with same structure as original data using dgamma
+# Use the ranDat() function to generate mock data of the Ca and Mg levels in the soil with distributions based on the parameters of the original data. 
 ```{r}
 library(MASS)
+ranMg <- ranDat(adDat$Mg)
+ranCa <- ranDat(adDat$Ca)
+
+# bind into a single data frame
+randomData <- data.frame(ranCa,ranMg)
+head(randomData)
+
+# test the relationship between the randomized Ca and Mg concentrations using the linear regression function
+linReg(xVar=randomData$ranCa,yVar=randomData$ranMg)
+linRegPlot(xVar=randomData$ranCa,yVar=randomData$ranMg)
+
+```
+
+## Test differences in the percent organic matter of the soil between the two species of serpentine maidenhair ferns with ANOVA using randomized data
+```{r}
+# Subset out percent organic matter for just the serpentine maidenhairs
+serpA <- subset(adDat,SpeciesID=="A")
+serpV <- subset(adDat,SpeciesID=="V")
+
+serpSpp <- rbind(serpA,serpV)
+
 # use the fitdistr function to get parameters of percent organic matter in soil using gamma distribution
-fitom <- fitdistr(adDat$Ompct,"gamma")
+ranOM <- ranDat(serpSpp$Ompct,"gamma",n=15)
 
-# make a new randomly generated %OM variable using parameters from above
-randOM <- rgamma(30,fitom$estimate[1],fitom$estimate[2])
-
-# Create vector of species id's and assign to randomly generated randOM values
-spID <- c("A","V")
-ranSpID <- rep(spID,length=30)
-ranDat <- data.frame(ranSpID,randOM)
+# Create vector of species id's and assign to randomly generated ranOM values
+ranSpID <- rbinom(15,size=1,prob=.5)
+randomData1 <- data.frame(ranSpID,ranOM)
 
 #Run ANOVA with randomly generated values - returns non-significant result
-ANOV(xVar=ranDat$ranSpID,yVar=ranDat$randOM)
-
-
+ANOV(xVar=randomData1$ranSpID,yVar=randomData1$ranOM)
+ANOVplot(xVar=randomData1$ranSpID,yVar=randomData1$ranOM)
 ```
 
+# Part 3: Statistical Analysis of Idealized (*bling*) data
+
+## Modeling a significant difference in soil percent organic matter between the two serpentine maidenhair ferns
+```{r}
+# find parameters of the distribution of percent organic matter for each species
+# aleuticum
+fitOM.a <- fitdistr(serpA$Ompct,"gamma")
+print(c(fitOM.a$estimate[1],fitOM.a$estimate[2]))
+
+#viridimontanum
+fitOM.v <- fitdistr(serpV$Ompct,"gamma")
+print(c(fitOM.v$estimate[1],fitOM.v$estimate[2]))
+
+# create random data that amplifies the existing difference
+# aleuticum
+datBlingA <- rgamma(6,shape=15,rate=.3)
+sp <- rep("A",length=6)
+datBlingA <- data.frame(cbind(datBlingA,sp))
+
+# viridimontanum
+datBlingV <- rgamma(9,shape=1.5,rate=.15)
+sp <- rep("V",length=9)
+datBlingV <- data.frame(cbind(datBlingV,sp))
+
+# Trying to combine this data into a single dataframe for the ANOV() test, but I can't figure out how to coerce it to that form.  
+```
 
 
 

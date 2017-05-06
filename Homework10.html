@@ -142,8 +142,8 @@ zeroSum()</code></pre>
 </div>
 <div id="number-2" class="section level2">
 <h2>Number 2</h2>
-<div id="using-subsetting-rather-than-for-loops-to-accomplish-the-same-thing-as-in-number-1" class="section level3">
-<h3>Using subsetting rather than for loops to accomplish the same thing as in number 1</h3>
+<div id="using-subsetting-rather-than-for-loops-to-accomplish-the-same-thing-as-in-1" class="section level3">
+<h3>Using subsetting rather than for loops to accomplish the same thing as in # 1</h3>
 <pre class="r"><code>v=rep(-10:10,times=3)
 
 length(v[v==0])</code></pre>
@@ -168,8 +168,8 @@ maxDiff()</code></pre>
 <div id="altering-the-maxdiff-function-to-output-the-values-and-numbered-positions-of-the-maximally-distant-numbers-in-the-atomic-vector-as-the-second-and-third-elements-in-the-output" class="section level3">
 <h3>Altering the maxDiff function to output the values and numbered positions of the maximally distant numbers in the atomic vector as the second and third elements in the output</h3>
 </div>
-<div id="based-on-code-written-by-alex-burnham" class="section level3">
-<h3>Based on code written by Alex Burnham</h3>
+<div id="based-on-code-shared-by-alex-burnham" class="section level3">
+<h3>Based on code shared by Alex Burnham</h3>
 <pre class="r"><code>maxDiff1 &lt;- function(x=rep(-5:5,each=1)){
   mat &lt;- matrix(nrow=length(x),ncol=length(x))
   rownames(mat) &lt;- x
@@ -202,8 +202,8 @@ maxDiff1() </code></pre>
 <div id="making-a-function-maxdiff2-which-does-the-same-thing-as-maxdiff1-but-that-works-by-storing-a-temporary-variable-that-keeps-track-of-differences-and-retains-the-largest" class="section level3">
 <h3>Making a function maxDiff2 which does the same thing as maxDiff1 but that works by storing a temporary variable that keeps track of differences and retains the largest</h3>
 </div>
-<div id="code-shared-by-alex-looi" class="section level3">
-<h3>Code shared by Alex Looi</h3>
+<div id="based-on-code-shared-by-alex-looi" class="section level3">
+<h3>Based on code shared by Alex Looi</h3>
 <pre class="r"><code> maxDiff2 &lt;- function(x=rep(-10:10,by=1)){
   tempPairs =expand.grid(x,x)
   diffPairs = abs(tempPairs$Var1 - tempPairs$Var2)
@@ -226,7 +226,7 @@ maxDiff2()</code></pre>
 <div id="a-function-that-takes-as-input-two-matrices-and-multiplies-them-together-using-the-rules-of-matrix-multiplication" class="section level3">
 <h3>A function that takes as input two matrices and multiplies them together using the rules of matrix multiplication</h3>
 </div>
-<div id="based-on-code-shared-by-alex-looi" class="section level3">
+<div id="based-on-code-shared-by-alex-looi-1" class="section level3">
 <h3>Based on code shared by Alex Looi</h3>
 <pre class="r"><code>matMult = function(m1=matrix(data=1:10,nrow=2,ncol=5),m2=t(m1)){
    m = matrix(0, nrow(m1), ncol(m2))
@@ -272,12 +272,13 @@ m1%*%m2</code></pre>
 }  
 
 matDims()</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12] [,13]
-## [1,]    1    2    3    4    5    6    7    8    9    10    11    12    13
-## [2,]    2    4    6    8   10   12   14   16   18    20    22    24    26
-##      [,14]
-## [1,]    14
-## [2,]    28</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    2    3    4    5
+## [2,]    2    4    6    8   10
+## [3,]    3    6    9   12   15
+## [4,]    4    8   12   16   20
+## [5,]    5   10   15   20   25
+## [6,]    6   12   18   24   30</code></pre>
 </div>
 </div>
 </div>

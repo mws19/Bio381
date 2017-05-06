@@ -21,7 +21,7 @@ zeroSum()
 ```
 
 ## Number 2
-### Using subsetting rather than for loops to accomplish the same thing as in number 1
+### Using subsetting rather than for loops to accomplish the same thing as in # 1
 ```{r}
 v=rep(-10:10,times=3)
 
@@ -42,7 +42,7 @@ maxDiff()
 
 # Number 4 
 ### Altering the maxDiff function to output the values and numbered positions of the maximally distant numbers in the atomic vector as the second and third elements in the output
-### Based on code written by Alex Burnham
+### Based on code shared by Alex Burnham
 ```{r, echo=TRUE}
 
 maxDiff1 <- function(x=rep(-5:5,each=1)){
@@ -66,7 +66,7 @@ maxDiff1()
 
 ## Number 5
 ### Making a function maxDiff2 which does the same thing as maxDiff1 but that works by storing a temporary variable that keeps track of differences and retains the largest 
-### Code shared by Alex Looi
+### Based on code shared by Alex Looi
 ```{r}
  maxDiff2 <- function(x=rep(-10:10,by=1)){
   tempPairs =expand.grid(x,x)
